@@ -77,3 +77,16 @@ class FirmaView(View):
         except:
             return JsonResponse(ERROR_MESSAGE, status=400)
         return JsonResponse(datos)
+
+    def delete(self, request, id_firma=None):
+        try:
+            if (id_firma is not None and Firma.objects.filter(id_firma=id_firma, estado_firma='Activo').exists()):
+                firma = Firma.objects.get(id_firma=id_firma)
+                firma.estado_firma = 'Inactivo'
+                firma.save()
+                datos = SUCCESS_MESSAGE
+            else:
+                datos = NOT_DATA_MESSAGE
+        except:
+            return JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
