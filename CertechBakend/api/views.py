@@ -41,12 +41,19 @@ class FirmaView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request):
-        firmas = list(Firma.objects.filter(estado_firma="Activo").values())
-        if len(firmas) > 0:
-            datos = {'firmas': firmas}
+    def get(self, request, id_firma=None):
+        if (id_firma == None):
+            firmas = list(Firma.objects.filter(estado_firma="Activo").values())
+            if len(firmas) > 0:
+                datos = {'firmas': firmas}
+            else:
+                datos = NOT_DATA_MESSAGE
         else:
-            datos = NOT_DATA_MESSAGE
+            firma = Firma.objects.filter(id_firma=id_firma).values().first()
+            if (firma != None):
+                datos = {'firma': firma}
+            else:
+                datos = NOT_DATA_MESSAGE
         return JsonResponse(datos)
 
     def post(self, request):
