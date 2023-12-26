@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AdministradorView, FirmaView, FirmaUpdateView, ParticipanteView
+from .views import AdministradorView, FirmaView, FirmaUpdateView, ParticipanteView, ParticipanteFileView
 
 urlpatterns = [
     path('administrador/<str:usuario>/<str:clave>/',
@@ -10,5 +10,7 @@ urlpatterns = [
          FirmaUpdateView.as_view(), name='firma_update'),
     path('participante/', ParticipanteView.as_view(), name='participante_list'),
     path('participante/<str:id_participante>/',
-         ParticipanteView.as_view(), name='participante_proceso')
+         ParticipanteView.as_view(), name='participante_proceso'),
+    path('participantefile/', ParticipanteFileView.as_view(),
+         name='participante_list'),
 ]

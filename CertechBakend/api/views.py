@@ -6,6 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from .models import Administrador, Firma, Participante
 from django.core.files.storage import default_storage
+import pandas as pd
 import os
 import json
 
@@ -189,3 +190,40 @@ class ParticipanteView(View):
         except:
             datos = JsonResponse(ERROR_MESSAGE, status=400)
         return JsonResponse(datos)
+
+
+class ParticipanteFileView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request):
+        try:
+            # Asegúrate de que el archivo Excel se haya enviado en la solicitud.
+            if 'excel_file' in request.FILES:
+                excel_file = request.FILES['excel_file']
+
+                # Utiliza pandas para leer el archivo Excel.
+                df = pd.read_excel(excel_file)
+
+                # Itera sobre las filas del DataFrame y crea participantes.
+                for _, row in df.iterrows():
+                    participante = Participante.objects.create(
+                        cedula=row['cedula'],
+                        nombre_apellido=row['nombre_apellido'],
+                        celular=row['celular'],
+                        correo=row['correo']
+                    )
+
+                # Obtiene los datos del último participante creado.
+                datos = Participante.objects.filter(
+                    id_participante=participante.id_participante
+                ).values().first()
+
+                return JsonResponse(datos)
+
+            else:
+                return JsonResponse({"error": "No se proporcionó un archivo Excel"}, status=400)
+
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
