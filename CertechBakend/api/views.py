@@ -4,7 +4,7 @@ from django.http import JsonResponse, HttpResponse, FileResponse
 from .constants import SUCCESS_MESSAGE, ERROR_MESSAGE, NOT_DATA_MESSAGE
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from .models import Administrador, Firma
+from .models import Administrador, Firma, Participante
 from django.core.files.storage import default_storage
 import os
 import json
@@ -120,4 +120,25 @@ class FirmaUpdateView(View):
                 datos = NOT_DATA_MESSAGE
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
+        return JsonResponse(datos)
+
+
+class ParticipanteView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request):
+        try:
+            jsonData = json.loads(request.body)
+            participante = Participante.objects.create(
+                cedula=jsonData['cedula'],
+                nombre_apellido=jsonData['nombre_apellido'],
+                celular=jsonData['celular'],
+                correo=jsonData['correo']
+            )
+            datos = Participante.objects.filter(
+                id_participante=participante.id_participante).values().first()
+        except:
+            return JsonResponse(ERROR_MESSAGE, status=400)
         return JsonResponse(datos)
