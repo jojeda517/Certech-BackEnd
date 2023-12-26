@@ -36,3 +36,17 @@ class Participante(models.Model):
     class Meta:
         managed = False
         db_table = 'participantes'
+
+
+class Evento(models.Model):
+    id_evento = models.AutoField(primary_key=True)
+    nombre_evento = models.CharField(max_length=255)
+    tipo_evento = models.CharField(max_length=100)
+    descripcion_evento = models.TextField()
+    portada = models.CharField(max_length=255)
+    logo = models.CharField(max_length=255)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        managed = False
+        db_table = 'eventos'
