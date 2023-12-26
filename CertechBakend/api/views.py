@@ -177,3 +177,15 @@ class ParticipanteView(View):
         except:
             datos = JsonResponse(ERROR_MESSAGE, status=400)
         return JsonResponse(datos)
+
+    def delete(self, request, id_participante):
+        try:
+            if Participante.objects.filter(id_participante=id_participante).exists():
+                Participante.objects.filter(
+                    id_participante=id_participante).delete()
+                datos = SUCCESS_MESSAGE
+            else:
+                datos = NOT_DATA_MESSAGE
+        except:
+            datos = JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
