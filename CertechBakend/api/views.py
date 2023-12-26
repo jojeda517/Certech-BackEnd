@@ -282,3 +282,45 @@ class EventoView(View):
         except:
             return JsonResponse(ERROR_MESSAGE, status=400)
         return JsonResponse(datos)
+
+
+class EventoUpdate(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, id_evento):
+        try:
+            if Evento.objects.filter(id_evento=id_evento).exists():
+                jsonData = request.POST
+                # Portada
+                imagenPortada = request.FILES.get('portada')
+                imgPort_path = os.path.join(
+                    'static', 'portada', imagenPortada.name)
+                imgPort_path = default_storage.save(
+                    imgPort_path, imagenPortada)
+                with open(imgPort_path, 'wb') as f:
+                    for chunk in imagenPortada.chunks():
+                        f.write(chunk)
+                # Logo
+                imagenLogo = request.FILES.get('logo')
+                imgLogo_path = os.path.join('static', 'logo', imagenLogo.name)
+                imgLogo_path = default_storage.save(imgLogo_path, imagenLogo)
+                with open(imgLogo_path, 'wb') as f:
+                    for chunk in imagenLogo.chunks():
+                        f.write(chunk)
+                evento = Evento.objects.filter(id_evento=id_evento).get()
+                evento.nombre_evento = jsonData['nombre_evento']
+                evento.tipo_evento = jsonData['tipo_evento']
+                evento.descripcion_evento = jsonData['descripcion_evento']
+                evento.portada = imgPort_path
+                evento.logo = imgLogo_path
+                evento.save()
+                datos = Evento.objects.filter(
+                    id_evento=evento.id_evento).values().first()
+                datos = {'evento': datos}
+            else:
+                datos = NOT_DATA_MESSAGE
+        except:
+            return JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
