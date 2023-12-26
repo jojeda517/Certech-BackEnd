@@ -158,3 +158,22 @@ class ParticipanteView(View):
         except:
             return JsonResponse(ERROR_MESSAGE, status=400)
         return JsonResponse(datos)
+
+    def put(self, request, id_participante):
+        try:
+            jsonData = json.loads(request.body)
+            if Participante.objects.filter(id_participante=id_participante).exists():
+                participante = Participante.objects.filter(
+                    id_participante=id_participante).get()
+                participante.cedula = jsonData['cedula']
+                participante.nombre_apellido = jsonData['nombre_apellido']
+                participante.celular = jsonData['celular']
+                participante.correo = jsonData['correo']
+                participante.save()
+                datos = {'participante': Participante.objects.filter(
+                    id_participante=id_participante).values().first()}
+            else:
+                datos = {'error': NOT_DATA_MESSAGE}
+        except:
+            datos = JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
