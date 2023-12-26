@@ -3,3 +3,5 @@
 Django
 mysqlclient
 pymysql
+openpyxl
+pandas

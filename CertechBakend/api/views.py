@@ -4,8 +4,9 @@ from django.http import JsonResponse, HttpResponse, FileResponse
 from .constants import SUCCESS_MESSAGE, ERROR_MESSAGE, NOT_DATA_MESSAGE
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from .models import Administrador, Firma
+from .models import Administrador, Firma, Participante
 from django.core.files.storage import default_storage
+import pandas as pd
 import os
 import json
 
@@ -121,3 +122,108 @@ class FirmaUpdateView(View):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
         return JsonResponse(datos)
+
+
+class ParticipanteView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, id_participante=None):
+        if (id_participante is None):
+            participantes = list(Participante.objects.values())
+            if (len(participantes) > 0):
+                datos = {'participantes': participantes}
+            else:
+                datos = NOT_DATA_MESSAGE
+        else:
+            participante = Participante.objects.filter(
+                id_participante=id_participante).values().first()
+            if participante is not None:
+                datos = {'participante': participante}
+            else:
+                datos = NOT_DATA_MESSAGE
+        return JsonResponse(datos)
+
+    def post(self, request):
+        try:
+            jsonData = json.loads(request.body)
+            participante = Participante.objects.create(
+                cedula=jsonData['cedula'],
+                nombre_apellido=jsonData['nombre_apellido'],
+                celular=jsonData['celular'],
+                correo=jsonData['correo']
+            )
+            datos = Participante.objects.filter(
+                id_participante=participante.id_participante).values().first()
+        except:
+            return JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
+
+    def put(self, request, id_participante):
+        try:
+            jsonData = json.loads(request.body)
+            if Participante.objects.filter(id_participante=id_participante).exists():
+                participante = Participante.objects.filter(
+                    id_participante=id_participante).get()
+                participante.cedula = jsonData['cedula']
+                participante.nombre_apellido = jsonData['nombre_apellido']
+                participante.celular = jsonData['celular']
+                participante.correo = jsonData['correo']
+                participante.save()
+                datos = {'participante': Participante.objects.filter(
+                    id_participante=id_participante).values().first()}
+            else:
+                datos = {'error': NOT_DATA_MESSAGE}
+        except:
+            datos = JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
+
+    def delete(self, request, id_participante):
+        try:
+            if Participante.objects.filter(id_participante=id_participante).exists():
+                Participante.objects.filter(
+                    id_participante=id_participante).delete()
+                datos = SUCCESS_MESSAGE
+            else:
+                datos = NOT_DATA_MESSAGE
+        except:
+            datos = JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
+
+
+class ParticipanteFileView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request):
+        try:
+            # Asegúrate de que el archivo Excel se haya enviado en la solicitud.
+            if 'excel_file' in request.FILES:
+                excel_file = request.FILES['excel_file']
+
+                # Utiliza pandas para leer el archivo Excel.
+                df = pd.read_excel(excel_file)
+
+                # Itera sobre las filas del DataFrame y crea participantes.
+                for _, row in df.iterrows():
+                    participante = Participante.objects.create(
+                        cedula=row['cedula'],
+                        nombre_apellido=row['nombre_apellido'],
+                        celular=row['celular'],
+                        correo=row['correo']
+                    )
+
+                # Obtiene los datos del último participante creado.
+                datos = Participante.objects.filter(
+                    id_participante=participante.id_participante
+                ).values().first()
+
+                return JsonResponse(datos)
+
+            else:
+                return JsonResponse({"error": "No se proporcionó un archivo Excel"}, status=400)
+
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)

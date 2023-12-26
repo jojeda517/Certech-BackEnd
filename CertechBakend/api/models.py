@@ -24,3 +24,15 @@ class Firma(models.Model):
     class Meta:
         managed = False
         db_table = 'firmas'
+
+
+class Participante(models.Model):
+    id_participante = models.AutoField(primary_key=True)
+    cedula = models.CharField(max_length=10)
+    nombre_apellido = models.CharField(max_length=100)
+    celular = models.CharField(max_length=10)
+    correo = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'participantes'
