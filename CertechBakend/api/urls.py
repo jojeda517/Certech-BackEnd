@@ -9,6 +9,6 @@ urlpatterns = [
     path('firmaupdate/<str:id_firma>/',
          FirmaUpdateView.as_view(), name='firma_update'),
     path('participante/', ParticipanteView.as_view(), name='participante_list'),
-    path('participante/<str:id_participante>',
+    path('participante/<str:id_participante>/',
          ParticipanteView.as_view(), name='participante_proceso')
 ]

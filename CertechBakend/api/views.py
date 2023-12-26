@@ -128,6 +128,22 @@ class ParticipanteView(View):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
+    def get(self, request, id_participante=None):
+        if (id_participante is None):
+            participantes = list(Participante.objects.values())
+            if (len(participantes) > 0):
+                datos = {'participantes': participantes}
+            else:
+                datos = NOT_DATA_MESSAGE
+        else:
+            participante = Participante.objects.filter(
+                id_participante=id_participante).values().first()
+            if participante is not None:
+                datos = {'participante': participante}
+            else:
+                datos = NOT_DATA_MESSAGE
+        return JsonResponse(datos)
+
     def post(self, request):
         try:
             jsonData = json.loads(request.body)
