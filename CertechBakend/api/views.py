@@ -283,6 +283,18 @@ class EventoView(View):
             return JsonResponse(ERROR_MESSAGE, status=400)
         return JsonResponse(datos)
 
+    def delete(self, request, id_evento=None):
+        try:
+            if Evento.objects.filter(id_evento=id_evento).exists():
+                Evento.objects.filter(
+                    id_evento=id_evento).delete()
+                datos = SUCCESS_MESSAGE
+            else:
+                datos = NOT_DATA_MESSAGE
+        except:
+            datos = JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
+
 
 class EventoUpdate(View):
     @method_decorator(csrf_exempt)
