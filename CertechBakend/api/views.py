@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Administrador, Firma
 from django.core.files.storage import default_storage
 import os
+import json
 
 # Create your views here.
 
@@ -89,4 +90,34 @@ class FirmaView(View):
                 datos = NOT_DATA_MESSAGE
         except:
             return JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
+
+
+class FirmaUpdateView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, id_firma=None):
+        try:
+            jsonData = request.POST
+            imagen = request.FILES.get('firma')
+            img_path = os.path.join('static', 'firmas', imagen.name)
+            img_path = default_storage.save(img_path, imagen)
+            with open(img_path, 'wb') as f:
+                for chunk in imagen.chunks():
+                    f.write(chunk)
+
+            if (id_firma is not None and Firma.objects.filter(id_firma=id_firma, estado_firma='Activo').exists()):
+                firma = Firma.objects.filter(id_firma=id_firma).get()
+                firma.propietario_firma = jsonData['propietario_firma']
+                firma.cargo_propietario = jsonData['cargo_propietario']
+                firma.firma = img_path
+                firma.save()
+                datos = {'firma': Firma.objects.filter(
+                    id_firma=id_firma).values().first()}
+            else:
+                datos = NOT_DATA_MESSAGE
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
         return JsonResponse(datos)
