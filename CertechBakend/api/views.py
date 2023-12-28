@@ -462,3 +462,30 @@ class DetalleCertificadoView(View):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
         return JsonResponse(datos)
+
+
+class PlantillaCertificadoView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request):
+        try:
+            jsonData = request.POST
+
+            id_certificado = jsonData.get('id_certificado')
+            id_plantilla = jsonData.get('id_plantilla')
+
+            if id_certificado is not None and id_plantilla is not None:
+                if Certificado.objects.filter(id_certificado=id_certificado).exists() and Plantilla.objects.filter(id_plantillas=id_plantilla).exists():
+                    certificado = Certificado.objects.get(id_certificado=id_certificado)
+                    certificado.id_plantilla = id_plantilla
+                    certificado.save()
+                    datos = {'mensaje': 'Certificado vinculado a la plantilla exitosamente'}
+                else:
+                    datos = {'mensaje': 'El certificado o la plantilla no existen'}
+            else:
+                datos = {'mensaje': 'No se proporcionó información suficiente para vincular el certificado con la plantilla'}
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        return JsonResponse(datos)

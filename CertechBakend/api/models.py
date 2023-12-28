@@ -72,4 +72,11 @@ class DetalleCertificado(models.Model):
     class Meta:
         managed = False
         db_table = 'detalle_certificados'
-        
+
+class Plantilla(models.Model):
+    id_plantillas = models.AutoField(primary_key=True)
+    plantilla = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'plantillas'

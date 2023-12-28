@@ -23,4 +23,6 @@ urlpatterns = [
     path('certificadoupdate/<str:id_certificado>/', CertificadoUpdateView.as_view(), name='certificado_update'),
      path('certificadodelete/<str:id_certificado>/', CertificadoDeleteView.as_view(), name='certificado_delete'),
      path('detallecertificado/', DetalleCertificadoView.as_view(), name='detalle_certificado'),
+     path('plantillacertificado/', PlantillaCertificadoView.as_view(), name='plantilla_certificado'),
+    
 ]
