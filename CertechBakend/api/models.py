@@ -64,3 +64,12 @@ class Certificado(models.Model):
         managed = False
         db_table = 'certificados'
 
+class DetalleCertificado(models.Model):
+    id_detalle = models.AutoField(primary_key=True)
+    id_certificado = models.IntegerField()
+    id_firma = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'detalle_certificados'
+        

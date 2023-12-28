@@ -436,3 +436,29 @@ class CertificadoDeleteView(View):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
         return JsonResponse(datos)
+class DetalleCertificadoView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request):
+        try:
+            jsonData = request.POST
+
+            id_certificado = jsonData.get('id_certificado')
+            id_firma = jsonData.get('id_firma')
+
+            if id_certificado is not None and id_firma is not None:
+                if Certificado.objects.filter(id_certificado=id_certificado).exists() and Firma.objects.filter(id_firma=id_firma).exists():
+                    detalle_certificado = DetalleCertificado.objects.create(
+                        id_certificado=id_certificado,
+                        id_firma=id_firma
+                    )
+                    datos = {'mensaje': 'Detalle de certificado creado exitosamente'}
+                else:
+                    datos = {'mensaje': 'El certificado o la firma no existen'}
+            else:
+                datos = {'mensaje': 'No se proporcionó información suficiente para crear el detalle del certificado'}
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        return JsonResponse(datos)
