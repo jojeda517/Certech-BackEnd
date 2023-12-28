@@ -387,3 +387,36 @@ class CertificadoView(View):
             return JsonResponse(ERROR_MESSAGE, status=400)
         return JsonResponse(datos)
 
+class CertificadoUpdateView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, id_certificado=None):
+        try:
+            jsonData = request.POST
+            certificadoFile = request.FILES.get('certificado')
+
+            if (id_certificado is not None and Certificado.objects.filter(id_certificado=id_certificado).exists()):
+                certificado = Certificado.objects.get(id_certificado=id_certificado)
+                certificado_path = os.path.join('static', 'certificados', certificadoFile.name)
+                certificado_path = default_storage.save(certificado_path, certificadoFile)
+                with open(certificado_path, 'wb') as f:
+                    for chunk in certificadoFile.chunks():
+                        f.write(chunk)
+
+                certificado.id_administrador = jsonData['id_administrador']
+                certificado.id_participante = jsonData['id_participante']
+                certificado.id_evento = jsonData['id_evento']
+                certificado.id_plantilla = jsonData['id_plantilla']
+                certificado.certificado_path = certificado_path
+                certificado.codigo_unico = jsonData['codigo_unico']
+
+                certificado.save()
+                datos = {'certificado': Certificado.objects.filter(id_certificado=id_certificado).values().first()}
+            else:
+                datos = NOT_DATA_MESSAGE
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        return JsonResponse(datos)
+    
