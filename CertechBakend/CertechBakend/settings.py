@@ -81,7 +81,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': 'jojeda5171',
+        'PASSWORD': '',
         'NAME': 'certech',
         # 'OPTIONS':{
         #    'init_comand': "SET sql_mode='STRICT_TRANS_TABLES'"

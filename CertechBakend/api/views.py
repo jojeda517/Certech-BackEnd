@@ -4,7 +4,7 @@ from django.http import JsonResponse, HttpResponse, FileResponse
 from .constants import SUCCESS_MESSAGE, ERROR_MESSAGE, NOT_DATA_MESSAGE
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from .models import Administrador, Firma, Participante, Evento
+from .models import Administrador, Firma, Participante, Evento, Certificado,DetalleCertificado, Plantilla
 from django.core.files.storage import default_storage
 import pandas as pd
 import os
@@ -336,3 +336,54 @@ class EventoUpdate(View):
         except:
             return JsonResponse(ERROR_MESSAGE, status=400)
         return JsonResponse(datos)
+
+class CertificadoView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, id_certificado=None):
+        if id_certificado is None:
+            certificados = Certificado.objects.all().values()
+            if certificados:
+                datos = {'certificados': list(certificados)}
+            else:
+                datos = {'mensaje': 'No se encontraron certificados'}
+        else:
+            certificado = Certificado.objects.filter(id_certificado=id_certificado).values().first()
+            if certificado:
+                datos = {'certificado': certificado}
+            else:
+                datos = {'mensaje': 'Certificado no encontrado'}
+
+        return JsonResponse(datos)
+
+    def post(self, request):
+        try:
+            jsonData = request.POST
+
+            # Lógica para manejar la carga de certificados
+            certificadoFile = request.FILES.get('certificado')
+            certificado_path = os.path.join(
+                'static', 'certificados', certificadoFile.name)
+            certificado_path = default_storage.save(certificado_path, certificadoFile)
+            with open(certificado_path, 'wb') as f:
+                for chunk in certificadoFile.chunks():
+                    f.write(chunk)
+
+            certificado = Certificado.objects.create(
+                id_administrador=jsonData['id_administrador'],
+                id_participante=jsonData['id_participante'],
+                id_evento=jsonData['id_evento'],
+                id_plantilla=jsonData['id_plantilla'],
+                certificado_path=certificado_path,
+                codigo_unico=jsonData['codigo_unico'],
+            )
+            datos = Certificado.objects.filter(
+                id_certificado=certificado.id_certificado).values().first()
+            datos = {'certificado': datos}
+        except Exception as e:
+            print(e)
+            return JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
+

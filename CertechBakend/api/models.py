@@ -50,3 +50,17 @@ class Evento(models.Model):
     class Meta:
         managed = False
         db_table = 'eventos'
+
+class Certificado(models.Model):
+    id_certificado = models.AutoField(primary_key=True)
+    id_administrador = models.IntegerField()
+    id_participante = models.IntegerField()
+    id_evento = models.IntegerField()
+    id_plantilla = models.IntegerField()
+    fecha = models.DateTimeField(auto_now_add=True)
+    codigo_unico = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'certificados'
+
