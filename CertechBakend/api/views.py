@@ -420,3 +420,19 @@ class CertificadoUpdateView(View):
             return JsonResponse({'error': str(e)}, status=400)
         return JsonResponse(datos)
     
+class CertificadoDeleteView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def delete(self, request, id_certificado=None):
+        try:
+            if id_certificado is not None and Certificado.objects.filter(id_certificado=id_certificado).exists():
+                certificado = Certificado.objects.get(id_certificado=id_certificado)
+                certificado.delete()
+                datos = {'mensaje': 'Certificado eliminado correctamente'}
+            else:
+                datos = {'mensaje': 'Certificado no encontrado o no se proporcionó un ID válido'}
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+        return JsonResponse(datos)
