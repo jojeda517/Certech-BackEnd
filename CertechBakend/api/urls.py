@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AdministradorView, FirmaView, FirmaUpdateView, ParticipanteView, ParticipanteFileView, EventoView, EventoUpdate
+from .views import AdministradorView, FirmaView, FirmaUpdateView, ParticipanteView, ParticipanteFileView, EventoView, EventoUpdate, PlantillaView
 
 urlpatterns = [
     path('administrador/<str:usuario>/<str:clave>/',
@@ -18,4 +18,8 @@ urlpatterns = [
          EventoView.as_view(), name='evento_proceso'),
     path('eventoupdate/<str:id_evento>/',
          EventoUpdate.as_view(), name='evento_proceso'),
+     path('plantilla/',
+         PlantillaView.as_view(), name='plantilla_list'),
+    path('plantilla/<str:id_plantilla>/',
+         PlantillaView.as_view(), name='plantilla_proceso')
 ]

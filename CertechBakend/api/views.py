@@ -4,7 +4,7 @@ from django.http import JsonResponse, HttpResponse, FileResponse
 from .constants import SUCCESS_MESSAGE, ERROR_MESSAGE, NOT_DATA_MESSAGE
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from .models import Administrador, Firma, Participante, Evento
+from .models import Administrador, Firma, Participante, Evento, Plantilla
 from django.core.files.storage import default_storage
 import pandas as pd
 import os
@@ -206,6 +206,9 @@ class ParticipanteFileView(View):
                 # Utiliza pandas para leer el archivo Excel.
                 df = pd.read_excel(excel_file)
 
+                # Lista para almacenar todos los participantes
+                participantes = []
+
                 # Itera sobre las filas del DataFrame y crea participantes.
                 for _, row in df.iterrows():
                     participante = Participante.objects.create(
@@ -214,13 +217,17 @@ class ParticipanteFileView(View):
                         celular=row['celular'],
                         correo=row['correo']
                     )
+                    # Agrega el participante a la lista
+                    participantes.append(participante)
 
-                # Obtiene los datos del último participante creado.
-                datos = Participante.objects.filter(
-                    id_participante=participante.id_participante
-                ).values().first()
+                # Obtiene los datos de todos los participantes creados.
+                datos = [{"id_participante": p.id_participante,
+                          "cedula": p.cedula,
+                          "nombre_apellido": p.nombre_apellido,
+                          "celular": p.celular,
+                          "correo": p.correo} for p in participantes]
 
-                return JsonResponse(datos)
+                return JsonResponse(datos, safe=False)
 
             else:
                 return JsonResponse({"error": "No se proporcionó un archivo Excel"}, status=400)
@@ -335,4 +342,87 @@ class EventoUpdate(View):
                 datos = NOT_DATA_MESSAGE
         except:
             return JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
+
+
+class PlantillaView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, id_plantilla=None):
+        try:
+            if id_plantilla is None:
+                # Si id_plantilla es None, retornar todos los datos de todas las plantillas
+                plantillas = Plantilla.objects.all()
+                datos = {'plantillas': list(plantillas.values())}
+            else:
+                # Si id_plantilla no es None, obtener los datos de una plantilla específica
+                plantilla = Plantilla.objects.get(id_plantilla=id_plantilla)
+                plantilla_path = plantilla.plantilla
+                with open(plantilla_path, 'rb') as file:
+                    response = HttpResponse(
+                        file.read(), content_type='application/pdf')
+                    return response
+        except Plantilla.DoesNotExist:
+            datos = ERROR_MESSAGE
+        except Exception as e:
+            datos = ERROR_MESSAGE
+
+        return JsonResponse(datos)
+
+    def post(self, request, id_plantilla=None):
+        try:
+            if Plantilla.objects.filter(id_plantilla=id_plantilla).exists():
+                jsonData = request.POST
+                plantillaDoc = request.FILES.get('plantilla')
+                plantilla_path = os.path.join(
+                    'static', 'plantilla', plantillaDoc.name)
+                plantilla_path = default_storage.save(
+                    plantilla_path, plantillaDoc)
+                with open(plantilla_path, 'wb') as f:
+                    for chunk in plantillaDoc.chunks():
+                        f.write(chunk)
+                plantilla = Plantilla.objects.filter(
+                    id_plantilla=id_plantilla).get()
+                plantilla.plantilla = plantilla_path
+                plantilla.save()
+                datos = Plantilla.objects.filter(
+                    id_plantilla=plantilla.id_plantilla).values().first()
+                datos = {'plantilla': datos}
+            else:
+                plantillaDoc = request.FILES.get('plantilla')
+                plantilla_path = os.path.join(
+                    'static', 'plantilla', plantillaDoc.name)
+                plantilla_path = default_storage.save(
+                    plantilla_path, plantillaDoc)
+                with open(plantilla_path, 'wb') as f:
+                    for chunk in plantillaDoc.chunks():
+                        f.write(chunk)
+                # Puedes ajustar esta parte según tus necesidades
+                plantilla = Plantilla.objects.create(plantilla=plantilla_path)
+                datos = {'plantilla': Plantilla.objects.filter(
+                    id_plantilla=plantilla.id_plantilla).values().first()}
+        except:
+            return JsonResponse(ERROR_MESSAGE, status=400)
+        return JsonResponse(datos)
+
+    def delete(self, request, id_plantilla):
+        try:
+            plantilla = Plantilla.objects.get(id_plantilla=id_plantilla)
+            # Guarda la ruta del archivo antes de eliminar la plantilla
+            plantilla_path = plantilla.plantilla
+            plantilla.delete()  # Elimina la plantilla de la base de datos
+
+            # Elimina el archivo físico asociado a la plantilla
+            if os.path.exists(plantilla_path):
+                os.remove(plantilla_path)
+
+            datos = SUCCESS_MESSAGE
+        except Plantilla.DoesNotExist:
+            datos = NOT_DATA_MESSAGE
+        except Exception as e:
+            print(e)
+            datos = ERROR_MESSAGE
+
         return JsonResponse(datos)

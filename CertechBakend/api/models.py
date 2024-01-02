@@ -50,3 +50,11 @@ class Evento(models.Model):
     class Meta:
         managed = False
         db_table = 'eventos'
+
+class Plantilla(models.Model):
+    id_plantilla=models.AutoField(primary_key=True)
+    plantilla=models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'plantillas'
