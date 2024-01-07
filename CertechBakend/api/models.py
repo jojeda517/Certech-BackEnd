@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 
 class Administrador(models.Model):
@@ -51,10 +52,37 @@ class Evento(models.Model):
         managed = False
         db_table = 'eventos'
 
+
 class Plantilla(models.Model):
-    id_plantilla=models.AutoField(primary_key=True)
-    plantilla=models.CharField(max_length=255)
+    id_plantilla = models.AutoField(primary_key=True)
+    plantilla = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'plantillas'
+
+
+class Certificado(models.Model):
+    id_certificado = models.AutoField(primary_key=True)
+    id_administrador = models.IntegerField()
+    id_participante = models.IntegerField()
+    id_evento = models.IntegerField()
+    id_plantilla = models.IntegerField()
+    fecha = models.DateTimeField(auto_now_add=True)
+    url = models.CharField(max_length=255)
+    codigo_unico = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True)
+
+    class Meta:
+        managed = False
+        db_table = 'certificados'
+
+
+class Detalle_Certificado(models.Model):
+    id_detalle = models.AutoField(primary_key=True)
+    id_certificado = models.IntegerField()
+    id_firma = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'detalle_certificados'

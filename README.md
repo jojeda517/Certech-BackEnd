@@ -5,3 +5,5 @@ mysqlclient
 pymysql
 openpyxl
 pandas
+reportlab
+PyPDF2
