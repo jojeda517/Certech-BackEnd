@@ -539,21 +539,23 @@ class ParticipantesEventoView(View):
     def get(self, request, id_evento):
         try:
             certificados = Certificado.objects.filter(id_evento=id_evento)
-            participantes_info = []
+            participantes_info = {}
 
             for certificado in certificados:
-                participante = Participante.objects.get(
-                    id_participante=certificado.id_participante)
-                participante_info = {
-                    'id_participante': participante.id_participante,
-                    'cedula': participante.cedula,
-                    'nombre_apellido': participante.nombre_apellido,
-                    'celular': participante.celular,
-                    'correo': participante.correo
-                }
-                participantes_info.append(participante_info)
+                participante_id = certificado.id_participante
 
-            datos = {'participantes': participantes_info}
+                # Verificar si ya hemos procesado este participante
+                if participante_id not in participantes_info:
+                    participante = Participante.objects.get(id_participante=participante_id)
+                    participantes_info[participante_id] = {
+                        'id_participante': participante.id_participante,
+                        'cedula': participante.cedula,
+                        'nombre_apellido': participante.nombre_apellido,
+                        'celular': participante.celular,
+                        'correo': participante.correo
+                    }
+
+            datos = {'participantes': list(participantes_info.values())}
         except Certificado.DoesNotExist:
             datos = NOT_DATA_MESSAGE
         except Participante.DoesNotExist:
@@ -562,81 +564,3 @@ class ParticipantesEventoView(View):
             return JsonResponse(ERROR_MESSAGE, status=400)
 
         return JsonResponse(datos)
-
-
-def generar_certificado_pdf(certificado, plantilla_path, detalle_certificado1, detalle_certificado2):
-
-    participante = Participante.objects.filter(
-        id_participante=certificado.id_participante).values().first()
-    firma1 = Firma.objects.filter(
-        id_firma=detalle_certificado1.id_firma).values().first()
-    firma2 = Firma.objects.filter(
-        id_firma=detalle_certificado2.id_firma).values().first()
-    print(firma1['firma'])
-    print(firma2['firma'])
-    print(participante)
-    # Abrir el archivo de la plantilla PDF existente
-    with open(plantilla_path, 'rb') as plantilla_file:
-        pdf_reader = PdfReader(plantilla_file)
-
-        # Crear un nuevo PDF en memoria
-        buffer = BytesIO()
-        pdf_writer = PdfWriter()
-
-        firma1_path = firma1['firma']
-        firma2_path = firma2['firma']
-
-        # Iterar sobre las páginas de la plantilla
-        for page_num in range(len(pdf_reader.pages)):
-            page = pdf_reader.pages[page_num]
-
-            # Crear un nuevo lienzo para agregar contenido
-            packet = BytesIO()
-            can = canvas.Canvas(packet)
-            ancho_documento, alto_documento = can._pagesize
-            print(ancho_documento)
-            print(alto_documento)
-
-            # Agregar texto al lienzo, puedes personalizar esto según tus necesidades
-            can.setFont("Times-Roman", 50)
-            longitud_texto = can.stringWidth(
-                f"{participante['nombre_apellido']}", "Times-Roman", 50)
-            print(longitud_texto)
-            can.drawString((ancho_documento)/2, alto_documento/3,
-                           f"{participante['nombre_apellido']}")
-            can.setFont("Helvetica", 10)
-            can.drawString(1, 1, f"{certificado.codigo_unico}")
-
-            # Agregar imagen de la firma 1 al lienzo
-            can.drawImage(firma1_path, 200, 100, 100, 100)
-
-            # Agregar imagen de la firma 2 al lienzo
-            can.drawImage(firma2_path, 500, 100, 100, 100)
-
-            # Cerrar el lienzo
-            can.save()
-            packet.seek(0)
-            can.showPage()
-
-            # Combina el lienzo generado con la página de la plantilla
-            overlay = PdfReader(packet)
-            page.merge_page(overlay.pages[0])
-
-            # Añadir la página modificada al nuevo PDF
-            pdf_writer.add_page(page)
-
-        # Directorio para guardar el certificado
-        certificado_directory = f'static/certificado/'
-        certificado_path = f'{certificado_directory}{certificado.codigo_unico}.pdf'
-
-        # Crear el directorio si no existe
-        if not os.path.exists(certificado_directory):
-            os.makedirs(certificado_directory)
-
-        # Guardar el nuevo PDF en la ubicación deseada
-        with open(certificado_path, 'wb') as certificado_file:
-            pdf_writer.write(certificado_file)
-
-    # Actualizar el campo pdf_path en el modelo Certificado
-    certificado.url = certificado_path
-    certificado.save()
