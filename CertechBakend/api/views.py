@@ -498,7 +498,8 @@ class CertificadoValidoView(View):
                     'administrador': administrador,
                     'evento': evento,
                     'fecha': certificado.fecha,
-                    'codigo_unico': certificado.codigo_unico
+                    'codigo_unico': certificado.codigo_unico,
+                    'url': certificado.url
                 }
             else:
                 datos = NOT_DATA_MESSAGE
@@ -521,7 +522,7 @@ class CertificadoParticipanteView(View):
             certificados = Certificado.objects.filter(
                 id_participante=participante.id_participante)
             datos = {'certificados': [{'id_certificado': certificado.id_certificado, 'nombre_apellido': participante.nombre_apellido, 'administrador': Administrador.objects.get(
-                id_administrador=certificado.id_administrador).usuario, 'evento': Evento.objects.get(id_evento=certificado.id_evento).nombre_evento, 'fecha': certificado.fecha, 'codigo_unico': certificado.codigo_unico} for certificado in certificados]}
+                id_administrador=certificado.id_administrador).usuario, 'evento': Evento.objects.get(id_evento=certificado.id_evento).nombre_evento, 'fecha': certificado.fecha, 'codigo_unico': certificado.codigo_unico, 'url': certificado.url} for certificado in certificados]}
         except Participante.DoesNotExist:
             datos = NOT_DATA_MESSAGE
         except Exception as e:
