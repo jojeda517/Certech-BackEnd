@@ -594,26 +594,42 @@ def generar_certificado_pdf(certificado, plantilla_path, detalle_certificado1, d
 
             # Crear un nuevo lienzo para agregar contenido
             packet = BytesIO()
-            can = canvas.Canvas(packet)
+            # Dimensiones en milímetros
+            ancho_mm = 891.1
+            alto_mm = 630.2
+
+            # Convertir a pulgadas (1 pulgada = 25.4 mm)
+            ancho_pulgadas = ancho_mm / 25.4
+            alto_pulgadas = alto_mm / 25.4
+
+            # Convertir a puntos (1 pulgada = 72 puntos)
+            ancho_puntos = ancho_pulgadas * 72
+            alto_puntos = alto_pulgadas * 72
+
+            # Tamaño de página para ReportLab
+            tamano_pagina = (ancho_puntos, alto_puntos)
+
+            # Usar el tamaño de página en ReportLab
+            can = canvas.Canvas(packet, pagesize=tamano_pagina)
             ancho_documento, alto_documento = can._pagesize
             print(ancho_documento)
             print(alto_documento)
 
             # Agregar texto al lienzo, puedes personalizar esto según tus necesidades
-            can.setFont("Times-Roman", 50)
+            can.setFont("Times-Roman", 100)
             longitud_texto = can.stringWidth(
                 f"{participante['nombre_apellido']}", "Times-Roman", 50)
             print(longitud_texto)
-            can.drawString((ancho_documento)/2, alto_documento/3,
+            can.drawString(1000, 1050,
                            f"{participante['nombre_apellido']}")
-            can.setFont("Helvetica", 10)
+            can.setFont("Helvetica", 30)
             can.drawString(1, 1, f"{certificado.codigo_unico}")
 
             # Agregar imagen de la firma 1 al lienzo
-            can.drawImage(firma1_path, 200, 100, 100, 100)
+            can.drawImage(firma1_path, 550, 400, 500, 250)
 
             # Agregar imagen de la firma 2 al lienzo
-            can.drawImage(firma2_path, 500, 100, 100, 100)
+            can.drawImage(firma2_path, 1500, 400, 500, 250)
 
             # Cerrar el lienzo
             can.save()
