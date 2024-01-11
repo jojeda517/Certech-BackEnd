@@ -16,6 +16,11 @@ from io import BytesIO
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.units import cm
 from reportlab.lib.pagesizes import *
+from datetime import datetime
+import locale
+
+# Establecer el idioma local a español
+locale.setlocale(locale.LC_TIME, 'es_ES.utf8')
 
 # Create your views here.
 
@@ -547,7 +552,8 @@ class ParticipantesEventoView(View):
 
                 # Verificar si ya hemos procesado este participante
                 if participante_id not in participantes_info:
-                    participante = Participante.objects.get(id_participante=participante_id)
+                    participante = Participante.objects.get(
+                        id_participante=participante_id)
                     participantes_info[participante_id] = {
                         'id_participante': participante.id_participante,
                         'cedula': participante.cedula,
@@ -566,14 +572,13 @@ class ParticipantesEventoView(View):
 
         return JsonResponse(datos)
 
+
 def generar_certificado_pdf(certificado, plantilla_path, detalle_certificado1, detalle_certificado2):
 
-    participante = Participante.objects.filter(
-        id_participante=certificado.id_participante).values().first()
-    firma1 = Firma.objects.filter(
-        id_firma=detalle_certificado1.id_firma).values().first()
-    firma2 = Firma.objects.filter(
-        id_firma=detalle_certificado2.id_firma).values().first()
+    participante = Participante.objects.filter(id_participante=certificado.id_participante).values().first()
+    firma1 = Firma.objects.filter(id_firma=detalle_certificado1.id_firma).values().first()
+    firma2 = Firma.objects.filter(id_firma=detalle_certificado2.id_firma).values().first()
+    evento = Evento.objects.filter(id_evento=certificado.id_evento).values().first()
     print(firma1['firma'])
     print(firma2['firma'])
     print(participante)
@@ -595,8 +600,8 @@ def generar_certificado_pdf(certificado, plantilla_path, detalle_certificado1, d
             # Crear un nuevo lienzo para agregar contenido
             packet = BytesIO()
             # Dimensiones en milímetros
-            ancho_mm = 891.1
-            alto_mm = 630.2
+            ancho_mm = 297
+            alto_mm = 210
 
             # Convertir a pulgadas (1 pulgada = 25.4 mm)
             ancho_pulgadas = ancho_mm / 25.4
@@ -616,20 +621,69 @@ def generar_certificado_pdf(certificado, plantilla_path, detalle_certificado1, d
             print(alto_documento)
 
             # Agregar texto al lienzo, puedes personalizar esto según tus necesidades
-            can.setFont("Times-Roman", 100)
-            longitud_texto = can.stringWidth(
-                f"{participante['nombre_apellido']}", "Times-Roman", 50)
-            print(longitud_texto)
-            can.drawString(1000, 1050,
-                           f"{participante['nombre_apellido']}")
+
+            #Confiere el presente
             can.setFont("Helvetica", 30)
+            longitud_texto_enc = can.stringWidth(f"Confiere el presente", "Helvetica", 30)
+            can.drawString((ancho_puntos/2)-(longitud_texto_enc/2), (alto_puntos-(alto_puntos/4))-20, f"Confiere el presente")
+
+            #CERTIFICADO
+            can.setFont("Helvetica", 30)
+            longitud_texto_cert = can.stringWidth(f"CERTIFICADO A:", "Helvetica", 30)
+            can.drawString((ancho_puntos/2)-(longitud_texto_cert/2), (alto_puntos-(alto_puntos/4)-50), f"CERTIFICADO A:")
+
+            #Participante
+            can.setFont("Times-Roman", 50)
+            longitud_texto = can.stringWidth(f"{participante['nombre_apellido']}".upper(), "Times-Roman", 50)
+            can.drawString((ancho_puntos - longitud_texto) / 2, (alto_puntos/2)+15, f"{participante['nombre_apellido']}".upper())
+
+            #Confiere el presente
+            can.setFont("Helvetica", 14)
+            longitud_texto_con = can.stringWidth(f"Por haber participado y aprobado el curso:", "Helvetica", 14)
+            can.drawString((ancho_puntos/2)-(longitud_texto_con/2), (alto_puntos-(alto_puntos/2))-15, f"Por haber participado y aprobado el curso:")
+
+            #Evento
+            can.setFont("Times-Roman", 30)
+            longitud_texto_evento = can.stringWidth(f"{evento['nombre_evento']}".upper(), "Times-Roman", 30)
+            can.drawString((ancho_puntos/2)-(longitud_texto_evento/2), (alto_puntos-(alto_puntos/2))-50, f"{evento['nombre_evento']}".upper())
+
+            #Fecha
+            fecha_formateada = certificado.fecha.strftime("%d de %B de %Y")
+            print(fecha_formateada)
+            can.setFont("Helvetica", 14)
+            longitud_texto_fecha = can.stringWidth("Ambato, "+fecha_formateada, "Helvetica", 14)
+            can.drawString(ancho_puntos-longitud_texto_fecha-50, (alto_puntos-(alto_puntos/2))-70, "Ambato, "+fecha_formateada)
+
+            #codigo
+            can.setFont("Helvetica", 10)
             can.drawString(1, 1, f"{certificado.codigo_unico}")
 
             # Agregar imagen de la firma 1 al lienzo
-            can.drawImage(firma1_path, 550, 400, 500, 250)
+            can.drawImage(firma1_path, (ancho_puntos/4)-100, 100, 200, 100)
 
             # Agregar imagen de la firma 2 al lienzo
-            can.drawImage(firma2_path, 1500, 400, 500, 250)
+            can.drawImage(firma2_path, ancho_puntos -
+                          (ancho_puntos/4)-100, 100, 200, 100)
+
+            #tamaño texto firma 1
+            can.setFont("Helvetica", 20)
+            longitud_texto_firma1 = can.stringWidth(f"{firma1['propietario_firma']}", "Helvetica", 20)
+            longitud_texto_firma2 = can.stringWidth(f"{firma2['propietario_firma']}", "Helvetica", 20)
+            # agregar a quien pertenece la firma
+            can.drawString((ancho_puntos/4)-longitud_texto_firma1/2, 75, f"{firma1['propietario_firma']}")
+
+            #agregar a quien pertenece la firma
+            can.drawString((ancho_puntos - (ancho_puntos/4)-longitud_texto_firma2/2), 75, f"{firma2['propietario_firma']}")
+
+            #tamaño texto cargo
+            can.setFont("Helvetica", 25)
+            longitud_texto_cargo_firma1 = can.stringWidth(f"{firma1['cargo_propietario']}", "Helvetica", 25)
+            longitud_texto_cargo_firma2 = can.stringWidth(f"{firma2['cargo_propietario']}", "Helvetica", 25)
+            # agregar a quien pertenece la firma
+            can.drawString((ancho_puntos/4)-longitud_texto_cargo_firma1/2, 50, f"{firma1['cargo_propietario']}")
+
+            #agregar a quien pertenece la firma
+            can.drawString((ancho_puntos - (ancho_puntos/4)-longitud_texto_cargo_firma2/2), 50, f"{firma2['cargo_propietario']}")
 
             # Cerrar el lienzo
             can.save()
