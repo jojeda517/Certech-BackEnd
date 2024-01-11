@@ -655,7 +655,7 @@ def generar_certificado_pdf(certificado, plantilla_path, detalle_certificado1, d
             can.drawString(ancho_puntos-longitud_texto_fecha-50, (alto_puntos-(alto_puntos/2))-70, "Ambato, "+fecha_formateada)
 
             #codigo
-            can.setFont("Helvetica", 10)
+            can.setFont("Helvetica", 12)
             can.drawString(1, 1, f"{certificado.codigo_unico}")
 
             # Agregar imagen de la firma 1 al lienzo
