@@ -1,9 +1,9 @@
 """
-WSGI config for CertechBakend project.
+Configuración WSGI para el proyecto CertechBakend.
 
-It exposes the WSGI callable as a module-level variable named ``application``.
+Expone la aplicación WSGI como una variable a nivel de módulo llamada ``application``.
 
-For more information on this file, see
+Para obtener más información sobre este archivo, consulta
 https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
 """
 
