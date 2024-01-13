@@ -25,9 +25,13 @@ SECRET_KEY = 'django-insecure-m-6uuov4o3c3^sl)5od1520o!9sv+f=8zpk#*22+(d8oc9&bhe
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",
+    # Add any other allowed origins as needed
+]
 
 ALLOWED_HOSTS = []
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
@@ -38,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api'
+    'api',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'CertechBakend.urls'
@@ -81,7 +87,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': 'jojeda5171',
+        'PASSWORD': '',
         'NAME': 'certech',
         # 'OPTIONS':{
         #    'init_comand': "SET sql_mode='STRICT_TRANS_TABLES'"
