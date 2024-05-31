@@ -1,4 +1,3 @@
-- api package
 # <a name="api-package"></a>**api package[#**](#api-package "Link to this heading")**
 ## <a name="submodules"></a>**Submodules[#**](#submodules "Link to this heading")**
 ## <a name="module-api.models"></a>**api.models module[#**](#module-api.models "Link to this heading")**
