@@ -1,3571 +1,1064 @@
-<!DOCTYPE html>
+<a name="pst-skip-link"></a>[Saltar al contenido principal](#main-content) 
 
+Back to top <a name="__primary"></a> FORMCHECKBOX <a name="__secondary"></a> FORMCHECKBOX 
 
-<html lang="es" data-content_root="./">
+<a name="q"></a>*      Ctrl+K
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+[documentación de Certech - 1.0.0](index.html)
 
-  <title>api package &#8212; documentación de Certech - 1.0.0</title>
+- [api package ]()
+- [CertechBakend package ](CertechBakend.html)
+- [CertechBakend ](modules.html)
+- [api package ]()
+- [CertechBakend package ](CertechBakend.html)
+- [CertechBakend ](modules.html)
 
+Navegación del sección
 
+- [CertechBakend package](CertechBakend.html)
+- [api package]()
+- [manage module](manage.html)
+- [](index.html)
+- api package
+# <a name="api-package"></a>**api package[#**](#api-package "Link to this heading")**
+## <a name="submodules"></a>**Submodules[#**](#submodules "Link to this heading")**
+## <a name="module-api.models"></a>**api.models module[#**](#module-api.models "Link to this heading")**
+*class* api.models.Administrador(*\*args*, *\*\*kwargs*)[#](#api.models.administrador "Link to this definition")
 
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
-  </script>
+Bases: Model
 
-  <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-  <link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-  <link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+Modelo para representar un administrador en el sistema.
 
+Atributos:
 
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+- id\_administrador (AutoField): Identificador único del administrador (clave primaria). 
+- usuario (CharField): Nombre de usuario del administrador.
+- clave (CharField): Contraseña del administrador.
+- cedula (CharField): Número de cédula del administrador.
+- correo (CharField): Dirección de correo electrónico del administrador.
+- celular (CharField): Número de teléfono celular del administrador.
 
-  <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+Meta:
 
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+- managed (bool): Indica si Django manejará la creación de la tabla en la base de datos (False en este caso).
+- db\_table (str): Nombre de la tabla en la base de datos (“administradores” en este caso).
 
-  <script src="_static/documentation_options.js?v=36c4ab74"></script>
-  <script src="_static/doctools.js?v=888ff710"></script>
-  <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-  <script src="_static/translations.js?v=efdbd0b9"></script>
-  <script>DOCUMENTATION_OPTIONS.pagename = 'api';</script>
-  <link rel="index" title="Índice" href="genindex.html" />
-  <link rel="search" title="Búsqueda" href="search.html" />
-  <link rel="next" title="CertechBakend package" href="CertechBakend.html" />
-  <link rel="prev" title="Welcome to Certech’s documentation!" href="index.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="es" />
-</head>
+Ejemplo de uso:
 
+admin = Administrador( usuario=”nombre\_usuario”, clave=”contraseña\_segura”, cedula=”1234567890”, [correo=”admin@example.com](mailto:correo='admin%40example.com)”, celular=”1234567890” ) 
 
-<body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%"
-  data-default-mode="">
+admin.save()
 
+*exception* DoesNotExist[#](#api.models.administrador.doesnotexist "Link to this definition")
 
+Bases: ObjectDoesNotExist
 
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Saltar al contenido principal</a>
+*exception* MultipleObjectsReturned[#](#api.models.administrador.multipleobjectsreturned "Link to this definition")
 
-  <div id="pst-scroll-pixel-helper"></div>
+Bases: MultipleObjectsReturned
 
+cedula[#](#api.models.administrador.cedula "Link to this definition")
 
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
+celular[#](#api.models.administrador.celular "Link to this definition")
 
-  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary" />
-  <label class="overlay overlay-primary" for="__primary"></label>
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary" />
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+clave[#](#api.models.administrador.clave "Link to this definition")
 
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-      <form class="bd-search d-flex align-items-center" action="search.html" method="get">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..."
-          aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off"
-          spellcheck="false" />
-        <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-      </form>
-    </div>
-  </div>
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-  <header>
+correo[#](#api.models.administrador.correo "Link to this definition")
 
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
-      <div class="bd-header__inner bd-page-width">
-        <label class="sidebar-toggle primary-toggle" for="__primary">
-          <span class="fa-solid fa-bars"></span>
-        </label>
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
+id\_administrador[#](#api.models.administrador.id_administrador "Link to this definition")
 
-        <div class="col-lg-3 navbar-header-items__start">
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-          <div class="navbar-item">
+objects *= <django.db.models.manager.Manager object>[#](#api.models.administrador.objects "Link to this definition")*
 
+usuario[#](#api.models.administrador.usuario "Link to this definition")
 
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-            <a class="navbar-brand logo" href="index.html">
+*class* api.models.Certificado(*\*args*, *\*\*kwargs*)[#](#api.models.certificado "Link to this definition")
 
+Bases: Model
 
+Modelo para representar un certificado en el sistema.
 
+Atributos:
 
+- id\_certificado (AutoField): Identificador único del certificado (clave primaria).
+- id\_administrador (IntegerField): Identificador del administrador asociado al certificado.
+- id\_participante (IntegerField): Identificador del participante asociado al certificado. 
+- id\_evento (IntegerField): Identificador del evento asociado al certificado.
+- id\_plantilla (IntegerField): Identificador de la plantilla asociada al certificado.
+- fecha (DateTimeField): Fecha y hora de creación del certificado (se actualiza automáticamente al crear el certificado).
+- url (CharField): Ruta o enlace al certificado.
+- codigo\_unico (UUIDField): Código único asociado al certificado (generado automáticamente).
 
+Meta:
 
-              <p class="title logo__title">documentación de Certech - 1.0.0</p>
+- managed (bool): Indica si Django manejará la creación de la tabla en la base de datos (False en este caso).
+- db\_table (str): Nombre de la tabla en la base de datos (“certificados” en este caso). 
 
-            </a>
-          </div>
+Ejemplo de uso:
 
-        </div>
+certificado = Certificado( id\_administrador=1, id\_participante=2, id\_evento=3, id\_plantilla=4, url=”ruta\_o\_enlace\_al\_certificado”, )
 
-        <div class="col-lg-9 navbar-header-items">
+certificado.save()
 
-          <div class="me-auto navbar-header-items__center">
+*exception* DoesNotExist[#](#api.models.certificado.doesnotexist "Link to this definition")
 
-            <div class="navbar-item">
-              <nav class="navbar-nav">
-                <ul class="bd-navbar-elements navbar-nav">
+Bases: ObjectDoesNotExist
 
-                  <li class="nav-item">
-                    <a class="nav-link nav-internal" href="#">
-                      api package
-                    </a>
-                  </li>
+*exception* MultipleObjectsReturned[#](#api.models.certificado.multipleobjectsreturned "Link to this definition")
 
+Bases: MultipleObjectsReturned
 
-                  <li class="nav-item">
-                    <a class="nav-link nav-internal" href="CertechBakend.html">
-                      CertechBakend package
-                    </a>
-                  </li>
+codigo\_unico[#](#api.models.certificado.codigo_unico "Link to this definition")
 
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-                  <li class="nav-item current active">
-                    <a class="nav-link nav-internal" href="modules.html">
-                      CertechBakend
-                    </a>
-                  </li>
+fecha[#](#api.models.certificado.fecha "Link to this definition")
 
-                </ul>
-              </nav>
-            </div>
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-          </div>
+get\_next\_by\_fecha(*\**, *field=<django.db.models.fields.DateTimeField: fecha>*, *is\_next=True*, *\*\*kwargs*)[#](#api.models.certificado.get_next_by_fecha "Link to this definition")
 
+get\_previous\_by\_fecha(*\**, *field=<django.db.models.fields.DateTimeField: fecha>*, *is\_next=False*, *\*\*kwargs*)[#](#api.models.certificado.get_previous_by_fecha "Link to this definition")
 
-          <div class="navbar-header-items__end">
+id\_administrador[#](#api.models.certificado.id_administrador "Link to this definition")
 
-            <div class="navbar-item navbar-persistent--container">
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
+id\_certificado[#](#api.models.certificado.id_certificado "Link to this definition")
 
-              <script>
-                document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Búsqueda</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
-              </script>
-            </div>
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
+id\_evento[#](#api.models.certificado.id_evento "Link to this definition")
 
-            <div class="navbar-item">
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-              <script>
-                document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-              </script>
-            </div>
+id\_participante[#](#api.models.certificado.id_participante "Link to this definition")
 
-          </div>
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-        </div>
+id\_plantilla[#](#api.models.certificado.id_plantilla "Link to this definition")
 
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-        <div class="navbar-persistent--mobile">
+objects *= <django.db.models.manager.Manager object>[#](#api.models.certificado.objects "Link to this definition")*
 
-          <script>
-            document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Búsqueda</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
-          </script>
-        </div>
+url[#](#api.models.certificado.url "Link to this definition")
 
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
+*class* api.models.Detalle\_Certificado(*\*args*, *\*\*kwargs*)[#](#api.models.detalle_certificado "Link to this definition")
 
-        <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
-          <span class="fa-solid fa-outdent"></span>
-        </label>
+Bases: Model
 
-      </div>
+Modelo para representar los detalles asociados a un certificado en el sistema.
 
-    </div>
+Atributos:
 
-  </header>
+- id\_detalle (AutoField): Identificador único del detalle (clave primaria).
+- id\_certificado (IntegerField): Identificador del certificado asociado al detalle.
+- id\_firma (IntegerField): Identificador de la firma asociada al detalle.
 
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+Meta:
 
+- managed (bool): Indica si Django manejará la creación de la tabla en la base de datos (False en este caso).
+- db\_table (str): Nombre de la tabla en la base de datos (“detalle\_certificados” en este caso).
 
+*exception* DoesNotExist[#](#api.models.detalle_certificado.doesnotexist "Link to this definition")
 
-      <div class="bd-sidebar-primary bd-sidebar">
+Bases: ObjectDoesNotExist
 
+*exception* MultipleObjectsReturned[#](#api.models.detalle_certificado.multipleobjectsreturned "Link to this definition")
 
+Bases: MultipleObjectsReturned
 
-        <div class="sidebar-header-items sidebar-primary__section">
+id\_certificado[#](#api.models.detalle_certificado.id_certificado "Link to this definition")
 
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-          <div class="sidebar-header-items__center">
+id\_detalle[#](#api.models.detalle_certificado.id_detalle "Link to this definition")
 
-            <div class="navbar-item">
-              <nav class="navbar-nav">
-                <ul class="bd-navbar-elements navbar-nav">
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-                  <li class="nav-item">
-                    <a class="nav-link nav-internal" href="#">
-                      api package
-                    </a>
-                  </li>
+id\_firma[#](#api.models.detalle_certificado.id_firma "Link to this definition")
 
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-                  <li class="nav-item">
-                    <a class="nav-link nav-internal" href="CertechBakend.html">
-                      CertechBakend package
-                    </a>
-                  </li>
+objects *= <django.db.models.manager.Manager object>[#](#api.models.detalle_certificado.objects "Link to this definition")*
 
+*class* api.models.Evento(*\*args*, *\*\*kwargs*)[#](#api.models.evento "Link to this definition")
 
-                  <li class="nav-item current active">
-                    <a class="nav-link nav-internal" href="modules.html">
-                      CertechBakend
-                    </a>
-                  </li>
+Bases: Model
 
-                </ul>
-              </nav>
-            </div>
+Modelo para representar un evento en el sistema.
 
-          </div>
+Atributos:
 
+- id\_evento (AutoField): Identificador único del evento (clave primaria).
+- nombre\_evento (CharField): Nombre del evento.
+- tipo\_evento (CharField): Tipo o categoría del evento.
+- descripcion\_evento (TextField): Descripción detallada del evento.
+- portada (CharField): Ruta o enlace a la imagen de portada del evento.
+- logo (CharField): Ruta o enlace al logo del evento.
+- fecha\_creacion (DateTimeField): Fecha y hora de creación del evento (se actualiza automáticamente al crear el evento).
 
+Meta:
 
-          <div class="sidebar-header-items__end">
+- managed (bool): Indica si Django manejará la creación de la tabla en la base de datos (False en este caso).
+- db\_table (str): Nombre de la tabla en la base de datos (“eventos” en este caso).
 
-            <div class="navbar-item">
+Ejemplo de uso:
 
-              <script>
-                document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-              </script>
-            </div>
+evento = Evento( nombre\_evento=”Nombre del Evento”, tipo\_evento=”Tipo de Evento”, descripcion\_evento=”Descripción detallada del evento.”, portada=”ruta\_o\_enlace\_a\_la\_imagen\_de\_portada”, logo=”ruta\_o\_enlace\_al\_logo”, )
 
-          </div>
+evento.save()
 
-        </div>
+*exception* DoesNotExist[#](#api.models.evento.doesnotexist "Link to this definition")
 
-        <div class="sidebar-primary-items__start sidebar-primary__section">
-          <div class="sidebar-primary-item">
-            <nav class="bd-docs-nav bd-links" aria-label="Navegación del sección">
-              <p class="bd-links__title" role="heading" aria-level="1">Navegación del sección</p>
-              <div class="bd-toc-item navbar-nav">
-                <ul class="current nav bd-sidenav">
-                  <li class="toctree-l1"><a class="reference internal" href="CertechBakend.html">CertechBakend
-                      package</a></li>
-                  <li class="toctree-l1 current active"><a class="current reference internal" href="#">api package</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="manage.html">manage module</a></li>
-                </ul>
-              </div>
-            </nav>
-          </div>
-        </div>
+Bases: ObjectDoesNotExist
 
+*exception* MultipleObjectsReturned[#](#api.models.evento.multipleobjectsreturned "Link to this definition")
 
-        <div class="sidebar-primary-items__end sidebar-primary__section">
-        </div>
+Bases: MultipleObjectsReturned
 
-        <div id="rtd-footer-container"></div>
+descripcion\_evento[#](#api.models.evento.descripcion_evento "Link to this definition")
 
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-      </div>
+fecha\_creacion[#](#api.models.evento.fecha_creacion "Link to this definition")
 
-      <main id="main-content" class="bd-main">
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
+get\_next\_by\_fecha\_creacion(*\**, *field=<django.db.models.fields.DateTimeField: fecha\_creacion>*, *is\_next=True*, *\*\*kwargs*)[#](#api.models.evento.get_next_by_fecha_creacion "Link to this definition")
 
-        <div class="bd-content">
-          <div class="bd-article-container">
+get\_previous\_by\_fecha\_creacion(*\**, *field=<django.db.models.fields.DateTimeField: fecha\_creacion>*, *is\_next=False*, *\*\*kwargs*)[#](#api.models.evento.get_previous_by_fecha_creacion "Link to this definition")
 
-            <div class="bd-header-article">
-              <div class="header-article-items header-article__inner">
+id\_evento[#](#api.models.evento.id_evento "Link to this definition")
 
-                <div class="header-article-items__start">
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-                  <div class="header-article-item">
+logo[#](#api.models.evento.logo "Link to this definition")
 
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
+nombre\_evento[#](#api.models.evento.nombre_evento "Link to this definition")
 
-                    <nav aria-label="Miga de pan">
-                      <ul class="bd-breadcrumbs">
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-                        <li class="breadcrumb-item breadcrumb-home">
-                          <a href="index.html" class="nav-link" aria-label="Inicio">
-                            <i class="fa-solid fa-home"></i>
-                          </a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">api package</li>
-                      </ul>
-                    </nav>
-                  </div>
+objects *= <django.db.models.manager.Manager object>[#](#api.models.evento.objects "Link to this definition")*
 
-                </div>
+portada[#](#api.models.evento.portada "Link to this definition")
 
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
-              </div>
-            </div>
+tipo\_evento[#](#api.models.evento.tipo_evento "Link to this definition")
 
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
 
+*class* api.models.Firma(*\*args*, *\*\*kwargs*)[#](#api.models.firma "Link to this definition")
 
+Bases: Model
 
-            <div id="searchbox"></div>
-            <article class="bd-article">
+Modelo para representar una firma en el sistema.
 
-              <section id="api-package">
-                <h1>api package<a class="headerlink" href="#api-package" title="Link to this heading">#</a></h1>
-                <section id="submodules">
-                  <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
-                </section>
-                <section id="module-api.models">
-                  <span id="api-models-module"></span>
-                  <h2>api.models module<a class="headerlink" href="#module-api.models"
-                      title="Link to this heading">#</a></h2>
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.models.Administrador">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.models.</span></span><span
-                        class="sig-name descname"><span class="pre">Administrador</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em
-                        class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                            class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                        href="#api.models.Administrador" title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>
-                      </p>
-                      <p>Modelo para representar un administrador en el sistema.</p>
-                      <dl class="simple">
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>id_administrador (AutoField): Identificador único del administrador (clave primaria).
-                              </p>
-                            </li>
-                            <li>
-                              <p>usuario (CharField): Nombre de usuario del administrador.</p>
-                            </li>
-                            <li>
-                              <p>clave (CharField): Contraseña del administrador.</p>
-                            </li>
-                            <li>
-                              <p>cedula (CharField): Número de cédula del administrador.</p>
-                            </li>
-                            <li>
-                              <p>correo (CharField): Dirección de correo electrónico del administrador.</p>
-                            </li>
-                            <li>
-                              <p>celular (CharField): Número de teléfono celular del administrador.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Meta:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>managed (bool): Indica si Django manejará la creación de la tabla en la base de datos
-                                (False en este caso).</p>
-                            </li>
-                            <li>
-                              <p>db_table (str): Nombre de la tabla en la base de datos (“administradores” en este
-                                caso).</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <p>Ejemplo de uso:</p>
-                      <blockquote>
-                        <div>
-                          <p>admin = Administrador(
-                            usuario=”nombre_usuario”,
-                            clave=”contraseña_segura”,
-                            cedula=”1234567890”,
-                            <a class="reference external"
-                              href="mailto:correo='admin&#37;&#52;&#48;example&#46;com">correo=”admin<span>&#64;</span>example<span>&#46;</span>com</a>”,
-                            celular=”1234567890”
-                            )
-                          </p>
-                          <p>admin.save()</p>
-                        </div>
-                      </blockquote>
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Administrador.DoesNotExist">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink"
-                            href="#api.models.Administrador.DoesNotExist" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Administrador.MultipleObjectsReturned">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a
-                            class="headerlink" href="#api.models.Administrador.MultipleObjectsReturned"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Administrador.cedula">
-                          <span class="sig-name descname"><span class="pre">cedula</span></span><a class="headerlink"
-                            href="#api.models.Administrador.cedula" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Administrador.celular">
-                          <span class="sig-name descname"><span class="pre">celular</span></span><a class="headerlink"
-                            href="#api.models.Administrador.celular" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Administrador.clave">
-                          <span class="sig-name descname"><span class="pre">clave</span></span><a class="headerlink"
-                            href="#api.models.Administrador.clave" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Administrador.correo">
-                          <span class="sig-name descname"><span class="pre">correo</span></span><a class="headerlink"
-                            href="#api.models.Administrador.correo" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Administrador.id_administrador">
-                          <span class="sig-name descname"><span class="pre">id_administrador</span></span><a
-                            class="headerlink" href="#api.models.Administrador.id_administrador"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Administrador.objects">
-                          <span class="sig-name descname"><span class="pre">objects</span></span><em
-                            class="property"><span class="w"> </span><span class="p"><span
-                                class="pre">=</span></span><span class="w"> </span><span
-                              class="pre">&lt;django.db.models.manager.Manager</span> <span
-                              class="pre">object&gt;</span></em><a class="headerlink"
-                            href="#api.models.Administrador.objects" title="Link to this definition">#</a>
-                        </dt>
-                        <dd></dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Administrador.usuario">
-                          <span class="sig-name descname"><span class="pre">usuario</span></span><a class="headerlink"
-                            href="#api.models.Administrador.usuario" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.models.Certificado">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.models.</span></span><span
-                        class="sig-name descname"><span class="pre">Certificado</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em
-                        class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                            class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                        href="#api.models.Certificado" title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>
-                      </p>
-                      <p>Modelo para representar un certificado en el sistema.</p>
-                      <dl class="simple">
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>id_certificado (AutoField): Identificador único del certificado (clave primaria).</p>
-                            </li>
-                            <li>
-                              <p>id_administrador (IntegerField): Identificador del administrador asociado al
-                                certificado.</p>
-                            </li>
-                            <li>
-                              <p>id_participante (IntegerField): Identificador del participante asociado al certificado.
-                              </p>
-                            </li>
-                            <li>
-                              <p>id_evento (IntegerField): Identificador del evento asociado al certificado.</p>
-                            </li>
-                            <li>
-                              <p>id_plantilla (IntegerField): Identificador de la plantilla asociada al certificado.</p>
-                            </li>
-                            <li>
-                              <p>fecha (DateTimeField): Fecha y hora de creación del certificado (se actualiza
-                                automáticamente al crear el certificado).</p>
-                            </li>
-                            <li>
-                              <p>url (CharField): Ruta o enlace al certificado.</p>
-                            </li>
-                            <li>
-                              <p>codigo_unico (UUIDField): Código único asociado al certificado (generado
-                                automáticamente).</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Meta:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>managed (bool): Indica si Django manejará la creación de la tabla en la base de datos
-                                (False en este caso).</p>
-                            </li>
-                            <li>
-                              <p>db_table (str): Nombre de la tabla en la base de datos (“certificados” en este caso).
-                              </p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <p>Ejemplo de uso:</p>
-                      <blockquote>
-                        <div>
-                          <p>certificado = Certificado(
-                            id_administrador=1,
-                            id_participante=2,
-                            id_evento=3,
-                            id_plantilla=4,
-                            url=”ruta_o_enlace_al_certificado”,
-                            )</p>
-                          <p>certificado.save()</p>
-                        </div>
-                      </blockquote>
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Certificado.DoesNotExist">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink"
-                            href="#api.models.Certificado.DoesNotExist" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Certificado.MultipleObjectsReturned">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a
-                            class="headerlink" href="#api.models.Certificado.MultipleObjectsReturned"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Certificado.codigo_unico">
-                          <span class="sig-name descname"><span class="pre">codigo_unico</span></span><a
-                            class="headerlink" href="#api.models.Certificado.codigo_unico"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Certificado.fecha">
-                          <span class="sig-name descname"><span class="pre">fecha</span></span><a class="headerlink"
-                            href="#api.models.Certificado.fecha" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.models.Certificado.get_next_by_fecha">
-                          <span class="sig-name descname"><span class="pre">get_next_by_fecha</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span
-                                class="pre">fecha&gt;</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.models.Certificado.get_next_by_fecha"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd></dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.models.Certificado.get_previous_by_fecha">
-                          <span class="sig-name descname"><span class="pre">get_previous_by_fecha</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span
-                                class="pre">fecha&gt;</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">is_next=False</span></span></em>, <em class="sig-param"><span
-                              class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.models.Certificado.get_previous_by_fecha"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd></dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Certificado.id_administrador">
-                          <span class="sig-name descname"><span class="pre">id_administrador</span></span><a
-                            class="headerlink" href="#api.models.Certificado.id_administrador"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Certificado.id_certificado">
-                          <span class="sig-name descname"><span class="pre">id_certificado</span></span><a
-                            class="headerlink" href="#api.models.Certificado.id_certificado"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Certificado.id_evento">
-                          <span class="sig-name descname"><span class="pre">id_evento</span></span><a class="headerlink"
-                            href="#api.models.Certificado.id_evento" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Certificado.id_participante">
-                          <span class="sig-name descname"><span class="pre">id_participante</span></span><a
-                            class="headerlink" href="#api.models.Certificado.id_participante"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Certificado.id_plantilla">
-                          <span class="sig-name descname"><span class="pre">id_plantilla</span></span><a
-                            class="headerlink" href="#api.models.Certificado.id_plantilla"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Certificado.objects">
-                          <span class="sig-name descname"><span class="pre">objects</span></span><em
-                            class="property"><span class="w"> </span><span class="p"><span
-                                class="pre">=</span></span><span class="w"> </span><span
-                              class="pre">&lt;django.db.models.manager.Manager</span> <span
-                              class="pre">object&gt;</span></em><a class="headerlink"
-                            href="#api.models.Certificado.objects" title="Link to this definition">#</a>
-                        </dt>
-                        <dd></dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Certificado.url">
-                          <span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink"
-                            href="#api.models.Certificado.url" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.models.Detalle_Certificado">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.models.</span></span><span
-                        class="sig-name descname"><span class="pre">Detalle_Certificado</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em
-                        class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                            class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                        href="#api.models.Detalle_Certificado" title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>
-                      </p>
-                      <p>Modelo para representar los detalles asociados a un certificado en el sistema.</p>
-                      <dl class="simple">
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>id_detalle (AutoField): Identificador único del detalle (clave primaria).</p>
-                            </li>
-                            <li>
-                              <p>id_certificado (IntegerField): Identificador del certificado asociado al detalle.</p>
-                            </li>
-                            <li>
-                              <p>id_firma (IntegerField): Identificador de la firma asociada al detalle.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Meta:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>managed (bool): Indica si Django manejará la creación de la tabla en la base de datos
-                                (False en este caso).</p>
-                            </li>
-                            <li>
-                              <p>db_table (str): Nombre de la tabla en la base de datos (“detalle_certificados” en este
-                                caso).</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Detalle_Certificado.DoesNotExist">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink"
-                            href="#api.models.Detalle_Certificado.DoesNotExist" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Detalle_Certificado.MultipleObjectsReturned">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a
-                            class="headerlink" href="#api.models.Detalle_Certificado.MultipleObjectsReturned"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Detalle_Certificado.id_certificado">
-                          <span class="sig-name descname"><span class="pre">id_certificado</span></span><a
-                            class="headerlink" href="#api.models.Detalle_Certificado.id_certificado"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Detalle_Certificado.id_detalle">
-                          <span class="sig-name descname"><span class="pre">id_detalle</span></span><a
-                            class="headerlink" href="#api.models.Detalle_Certificado.id_detalle"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Detalle_Certificado.id_firma">
-                          <span class="sig-name descname"><span class="pre">id_firma</span></span><a class="headerlink"
-                            href="#api.models.Detalle_Certificado.id_firma" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Detalle_Certificado.objects">
-                          <span class="sig-name descname"><span class="pre">objects</span></span><em
-                            class="property"><span class="w"> </span><span class="p"><span
-                                class="pre">=</span></span><span class="w"> </span><span
-                              class="pre">&lt;django.db.models.manager.Manager</span> <span
-                              class="pre">object&gt;</span></em><a class="headerlink"
-                            href="#api.models.Detalle_Certificado.objects" title="Link to this definition">#</a>
-                        </dt>
-                        <dd></dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.models.Evento">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.models.</span></span><span
-                        class="sig-name descname"><span class="pre">Evento</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em
-                        class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                            class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                        href="#api.models.Evento" title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>
-                      </p>
-                      <p>Modelo para representar un evento en el sistema.</p>
-                      <dl class="simple">
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>id_evento (AutoField): Identificador único del evento (clave primaria).</p>
-                            </li>
-                            <li>
-                              <p>nombre_evento (CharField): Nombre del evento.</p>
-                            </li>
-                            <li>
-                              <p>tipo_evento (CharField): Tipo o categoría del evento.</p>
-                            </li>
-                            <li>
-                              <p>descripcion_evento (TextField): Descripción detallada del evento.</p>
-                            </li>
-                            <li>
-                              <p>portada (CharField): Ruta o enlace a la imagen de portada del evento.</p>
-                            </li>
-                            <li>
-                              <p>logo (CharField): Ruta o enlace al logo del evento.</p>
-                            </li>
-                            <li>
-                              <p>fecha_creacion (DateTimeField): Fecha y hora de creación del evento (se actualiza
-                                automáticamente al crear el evento).</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Meta:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>managed (bool): Indica si Django manejará la creación de la tabla en la base de datos
-                                (False en este caso).</p>
-                            </li>
-                            <li>
-                              <p>db_table (str): Nombre de la tabla en la base de datos (“eventos” en este caso).</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <p>Ejemplo de uso:</p>
-                      <blockquote>
-                        <div>
-                          <p>evento = Evento(
-                            nombre_evento=”Nombre del Evento”,
-                            tipo_evento=”Tipo de Evento”,
-                            descripcion_evento=”Descripción detallada del evento.”,
-                            portada=”ruta_o_enlace_a_la_imagen_de_portada”,
-                            logo=”ruta_o_enlace_al_logo”,
-                            )</p>
-                          <p>evento.save()</p>
-                        </div>
-                      </blockquote>
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Evento.DoesNotExist">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink"
-                            href="#api.models.Evento.DoesNotExist" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Evento.MultipleObjectsReturned">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a
-                            class="headerlink" href="#api.models.Evento.MultipleObjectsReturned"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Evento.descripcion_evento">
-                          <span class="sig-name descname"><span class="pre">descripcion_evento</span></span><a
-                            class="headerlink" href="#api.models.Evento.descripcion_evento"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Evento.fecha_creacion">
-                          <span class="sig-name descname"><span class="pre">fecha_creacion</span></span><a
-                            class="headerlink" href="#api.models.Evento.fecha_creacion"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.models.Evento.get_next_by_fecha_creacion">
-                          <span class="sig-name descname"><span
-                              class="pre">get_next_by_fecha_creacion</span></span><span class="sig-paren">(</span><em
-                            class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em
-                            class="sig-param"><span class="n"><span
-                                class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span
-                                class="pre">fecha_creacion&gt;</span></span></em>, <em class="sig-param"><span
-                              class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span
-                              class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.models.Evento.get_next_by_fecha_creacion"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd></dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.models.Evento.get_previous_by_fecha_creacion">
-                          <span class="sig-name descname"><span
-                              class="pre">get_previous_by_fecha_creacion</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span
-                                class="pre">fecha_creacion&gt;</span></span></em>, <em class="sig-param"><span
-                              class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span
-                              class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.models.Evento.get_previous_by_fecha_creacion"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd></dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Evento.id_evento">
-                          <span class="sig-name descname"><span class="pre">id_evento</span></span><a class="headerlink"
-                            href="#api.models.Evento.id_evento" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Evento.logo">
-                          <span class="sig-name descname"><span class="pre">logo</span></span><a class="headerlink"
-                            href="#api.models.Evento.logo" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Evento.nombre_evento">
-                          <span class="sig-name descname"><span class="pre">nombre_evento</span></span><a
-                            class="headerlink" href="#api.models.Evento.nombre_evento"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Evento.objects">
-                          <span class="sig-name descname"><span class="pre">objects</span></span><em
-                            class="property"><span class="w"> </span><span class="p"><span
-                                class="pre">=</span></span><span class="w"> </span><span
-                              class="pre">&lt;django.db.models.manager.Manager</span> <span
-                              class="pre">object&gt;</span></em><a class="headerlink" href="#api.models.Evento.objects"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd></dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Evento.portada">
-                          <span class="sig-name descname"><span class="pre">portada</span></span><a class="headerlink"
-                            href="#api.models.Evento.portada" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Evento.tipo_evento">
-                          <span class="sig-name descname"><span class="pre">tipo_evento</span></span><a
-                            class="headerlink" href="#api.models.Evento.tipo_evento"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.models.Firma">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.models.</span></span><span
-                        class="sig-name descname"><span class="pre">Firma</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em
-                        class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                            class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                        href="#api.models.Firma" title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>
-                      </p>
-                      <p>Modelo para representar una firma en el sistema.</p>
-                      <dl class="simple">
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>id_firma (AutoField): Identificador único de la firma (clave primaria).</p>
-                            </li>
-                            <li>
-                              <p>propietario_firma (CharField): Nombre del propietario de la firma.</p>
-                            </li>
-                            <li>
-                              <p>cargo_propietario (CharField): Cargo del propietario de la firma.</p>
-                            </li>
-                            <li>
-                              <p>firma (CharField): Representación de la firma (puede ser una ruta de archivo, URL o
-                                datos de imagen, dependiendo de la implementación).</p>
-                            </li>
-                            <li>
-                              <p>estado_firma (CharField): Estado actual de la firma (por ejemplo, activa, inactiva,
-                                pendiente).</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Meta:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>managed (bool): Indica si Django manejará la creación de la tabla en la base de datos
-                                (False en este caso).</p>
-                            </li>
-                            <li>
-                              <p>db_table (str): Nombre de la tabla en la base de datos (“firmas” en este caso).</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <p>Ejemplo de uso:</p>
-                      <blockquote>
-                        <div>
-                          <p>firma = Firma(
-                            propietario_firma=”Nombre Propietario”,
-                            cargo_propietario=”Cargo del Propietario”,
-                            firma=”ruta_o_datos_de_firma”,
-                            estado_firma=”Activa”
-                            )</p>
-                          <p>firma.save()</p>
-                        </div>
-                      </blockquote>
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Firma.DoesNotExist">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink"
-                            href="#api.models.Firma.DoesNotExist" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Firma.MultipleObjectsReturned">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a
-                            class="headerlink" href="#api.models.Firma.MultipleObjectsReturned"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Firma.cargo_propietario">
-                          <span class="sig-name descname"><span class="pre">cargo_propietario</span></span><a
-                            class="headerlink" href="#api.models.Firma.cargo_propietario"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Firma.estado_firma">
-                          <span class="sig-name descname"><span class="pre">estado_firma</span></span><a
-                            class="headerlink" href="#api.models.Firma.estado_firma"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Firma.firma">
-                          <span class="sig-name descname"><span class="pre">firma</span></span><a class="headerlink"
-                            href="#api.models.Firma.firma" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Firma.id_firma">
-                          <span class="sig-name descname"><span class="pre">id_firma</span></span><a class="headerlink"
-                            href="#api.models.Firma.id_firma" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Firma.objects">
-                          <span class="sig-name descname"><span class="pre">objects</span></span><em
-                            class="property"><span class="w"> </span><span class="p"><span
-                                class="pre">=</span></span><span class="w"> </span><span
-                              class="pre">&lt;django.db.models.manager.Manager</span> <span
-                              class="pre">object&gt;</span></em><a class="headerlink" href="#api.models.Firma.objects"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd></dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Firma.propietario_firma">
-                          <span class="sig-name descname"><span class="pre">propietario_firma</span></span><a
-                            class="headerlink" href="#api.models.Firma.propietario_firma"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.models.Participante">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.models.</span></span><span
-                        class="sig-name descname"><span class="pre">Participante</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em
-                        class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                            class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                        href="#api.models.Participante" title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>
-                      </p>
-                      <p>Modelo para representar a un participante en el sistema.</p>
-                      <dl class="simple">
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>id_participante (AutoField): Identificador único del participante (clave primaria).</p>
-                            </li>
-                            <li>
-                              <p>cedula (CharField): Número de cédula del participante.</p>
-                            </li>
-                            <li>
-                              <p>nombre_apellido (CharField): Nombre y apellido del participante.</p>
-                            </li>
-                            <li>
-                              <p>celular (CharField): Número de teléfono celular del participante.</p>
-                            </li>
-                            <li>
-                              <p>correo (CharField): Dirección de correo electrónico del participante.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Meta:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>managed (bool): Indica si Django manejará la creación de la tabla en la base de datos
-                                (False en este caso).</p>
-                            </li>
-                            <li>
-                              <p>db_table (str): Nombre de la tabla en la base de datos (“participantes” en este caso).
-                              </p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <p>Ejemplo de uso:</p>
-                      <blockquote>
-                        <div>
-                          <p>participante = Participante(
-                            cedula=”1234567890”,
-                            nombre_apellido=”Nombre Apellido”,
-                            celular=”1234567890”,
-                            <a class="reference external"
-                              href="mailto:correo='participante&#37;&#52;&#48;example&#46;com">correo=”participante<span>&#64;</span>example<span>&#46;</span>com</a>”
-                            )
-                          </p>
-                          <p>participante.save()</p>
-                        </div>
-                      </blockquote>
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Participante.DoesNotExist">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink"
-                            href="#api.models.Participante.DoesNotExist" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Participante.MultipleObjectsReturned">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a
-                            class="headerlink" href="#api.models.Participante.MultipleObjectsReturned"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Participante.cedula">
-                          <span class="sig-name descname"><span class="pre">cedula</span></span><a class="headerlink"
-                            href="#api.models.Participante.cedula" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Participante.celular">
-                          <span class="sig-name descname"><span class="pre">celular</span></span><a class="headerlink"
-                            href="#api.models.Participante.celular" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Participante.correo">
-                          <span class="sig-name descname"><span class="pre">correo</span></span><a class="headerlink"
-                            href="#api.models.Participante.correo" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Participante.id_participante">
-                          <span class="sig-name descname"><span class="pre">id_participante</span></span><a
-                            class="headerlink" href="#api.models.Participante.id_participante"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Participante.nombre_apellido">
-                          <span class="sig-name descname"><span class="pre">nombre_apellido</span></span><a
-                            class="headerlink" href="#api.models.Participante.nombre_apellido"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Participante.objects">
-                          <span class="sig-name descname"><span class="pre">objects</span></span><em
-                            class="property"><span class="w"> </span><span class="p"><span
-                                class="pre">=</span></span><span class="w"> </span><span
-                              class="pre">&lt;django.db.models.manager.Manager</span> <span
-                              class="pre">object&gt;</span></em><a class="headerlink"
-                            href="#api.models.Participante.objects" title="Link to this definition">#</a>
-                        </dt>
-                        <dd></dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.models.Plantilla">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.models.</span></span><span
-                        class="sig-name descname"><span class="pre">Plantilla</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em
-                        class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                            class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                        href="#api.models.Plantilla" title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code>
-                      </p>
-                      <p>Modelo para representar una plantilla en el sistema.</p>
-                      <dl class="simple">
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>id_plantilla (AutoField): Identificador único de la plantilla (clave primaria).</p>
-                            </li>
-                            <li>
-                              <p>plantilla (CharField): Ruta o enlace a la plantilla.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Meta:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>managed (bool): Indica si Django manejará la creación de la tabla en la base de datos
-                                (False en este caso).</p>
-                            </li>
-                            <li>
-                              <p>db_table (str): Nombre de la tabla en la base de datos (“plantillas” en este caso).</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <p>Ejemplo de uso:</p>
-                      <blockquote>
-                        <div>
-                          <p>plantilla = Plantilla(
-                            plantilla=”ruta_o_enlace_a_la_plantilla”,
-                            )
-                            plantilla.save()</p>
-                        </div>
-                      </blockquote>
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Plantilla.DoesNotExist">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink"
-                            href="#api.models.Plantilla.DoesNotExist" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py exception">
-                        <dt class="sig sig-object py" id="api.models.Plantilla.MultipleObjectsReturned">
-                          <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span
-                            class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a
-                            class="headerlink" href="#api.models.Plantilla.MultipleObjectsReturned"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Bases: <code
-                              class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code>
-                          </p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Plantilla.id_plantilla">
-                          <span class="sig-name descname"><span class="pre">id_plantilla</span></span><a
-                            class="headerlink" href="#api.models.Plantilla.id_plantilla"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Plantilla.objects">
-                          <span class="sig-name descname"><span class="pre">objects</span></span><em
-                            class="property"><span class="w"> </span><span class="p"><span
-                                class="pre">=</span></span><span class="w"> </span><span
-                              class="pre">&lt;django.db.models.manager.Manager</span> <span
-                              class="pre">object&gt;</span></em><a class="headerlink"
-                            href="#api.models.Plantilla.objects" title="Link to this definition">#</a>
-                        </dt>
-                        <dd></dd>
-                      </dl>
-
-                      <dl class="py attribute">
-                        <dt class="sig sig-object py" id="api.models.Plantilla.plantilla">
-                          <span class="sig-name descname"><span class="pre">plantilla</span></span><a class="headerlink"
-                            href="#api.models.Plantilla.plantilla" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>A wrapper for a deferred-loading field. When the value is read from this
-                            object the first time, the query is executed.</p>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                </section>
-                <section id="module-api.views">
-                  <span id="api-views-module"></span>
-                  <h2>api.views module<a class="headerlink" href="#module-api.views" title="Link to this heading">#</a>
-                  </h2>
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.AdministradorView">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">AdministradorView</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.AdministradorView"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para manejar operaciones relacionadas con administradores.</p>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.AdministradorView.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.AdministradorView.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.AdministradorView.get">
-                          <span class="sig-name descname"><span class="pre">get</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">usuario</span></span><span class="o"><span class="pre">=</span></span><span
-                              class="default_value"><span class="pre">None</span></span></em>, <em
-                            class="sig-param"><span class="n"><span class="pre">clave</span></span><span class="o"><span
-                                class="pre">=</span></span><span class="default_value"><span
-                                class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                            href="#api.views.AdministradorView.get" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes GET para recuperar información sobre administradores.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>usuario</strong> – Nombre de usuario (opcional).</p>
-                                </li>
-                                <li>
-                                  <p><strong>clave</strong> – Clave (opcional).</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con los datos del administrador o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.CertificadoParticipanteView">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">CertificadoParticipanteView</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.CertificadoParticipanteView"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para obtener los certificados asociados a un participante mediante su número de cédula.
-                      </p>
-                      <dl class="simple">
-                        <dt>Métodos admitidos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>GET: Obtiene la lista de certificados asociados al participante.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>NOT_DATA_MESSAGE (dict): Mensaje de respuesta cuando no se encuentra el participante o
-                                sus certificados.</p>
-                            </li>
-                            <li>
-                              <p>ERROR_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud.
-                              </p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.CertificadoParticipanteView.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.CertificadoParticipanteView.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.CertificadoParticipanteView.get">
-                          <span class="sig-name descname"><span class="pre">get</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">cedula</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.CertificadoParticipanteView.get"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes GET para obtener la lista de certificados asociados a un
-                            participante mediante su número de cédula.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>cedula</strong> – Número de cédula del participante.</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con la lista de certificados asociados al participante o una respuesta de
-                                error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.CertificadoValidoView">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">CertificadoValidoView</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.CertificadoValidoView"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para verificar la validez de un certificado mediante su código único.</p>
-                      <dl class="simple">
-                        <dt>Métodos admitidos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>GET: Obtiene detalles del certificado válido asociado al código único proporcionado.
-                              </p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>NOT_DATA_MESSAGE (dict): Mensaje de respuesta cuando no se encuentra el certificado.
-                              </p>
-                            </li>
-                            <li>
-                              <p>ERROR_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud.
-                              </p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.CertificadoValidoView.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.CertificadoValidoView.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.CertificadoValidoView.get">
-                          <span class="sig-name descname"><span class="pre">get</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">codigo_unico</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.CertificadoValidoView.get"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes GET para obtener detalles del certificado válido asociado al código
-                            único proporcionado.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>codigo_unico</strong> – Código único asociado al certificado.</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles del certificado válido o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.CertificadoView">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">CertificadoView</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.CertificadoView"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para manejar operaciones relacionadas con certificados.</p>
-                      <dl class="simple">
-                        <dt>Métodos admitidos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>POST: Crea un nuevo certificado con las firmas proporcionadas y genera el certificado
-                                en formato PDF.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>ERROR_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud.
-                              </p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.CertificadoView.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.CertificadoView.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.CertificadoView.post">
-                          <span class="sig-name descname"><span class="pre">post</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_firma1</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_firma2</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.CertificadoView.post"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes POST para crear un nuevo certificado con las firmas proporcionadas y
-                            generar el certificado en formato PDF.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_firma1</strong> – ID de la primera firma asociada al certificado.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_firma2</strong> – ID de la segunda firma asociada al certificado.</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles del certificado creado o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.EventoUpdate">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">EventoUpdate</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.EventoUpdate"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para manejar la actualización de eventos.</p>
-                      <dl class="simple">
-                        <dt>Métodos admitidos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>POST: Actualiza un evento existente según el ID proporcionado.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>NOT_DATA_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.</p>
-                            </li>
-                            <li>
-                              <p>ERROR_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud.
-                              </p>
-                            </li>
-                            <li>
-                              <p>SUCCESS_MESSAGE (dict): Mensaje de respuesta exitosa.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.EventoUpdate.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.EventoUpdate.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.EventoUpdate.post">
-                          <span class="sig-name descname"><span class="pre">post</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_evento</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.EventoUpdate.post" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes POST para actualizar un evento existente.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_evento</strong> – ID del evento a actualizar.</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles del evento actualizado o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.EventoView">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">EventoView</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.EventoView"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para manejar operaciones relacionadas con eventos.</p>
-                      <dl class="simple">
-                        <dt>Métodos admitidos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>GET: Recupera información sobre eventos, ya sea un evento específico o todos los
-                                eventos disponibles.</p>
-                            </li>
-                            <li>
-                              <p>POST: Crea un nuevo evento a partir de los datos proporcionados en la solicitud.</p>
-                            </li>
-                            <li>
-                              <p>DELETE: Elimina un evento específico según el ID proporcionado.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>NOT_DATA_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.</p>
-                            </li>
-                            <li>
-                              <p>ERROR_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud.
-                              </p>
-                            </li>
-                            <li>
-                              <p>SUCCESS_MESSAGE (dict): Mensaje de respuesta exitosa.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.EventoView.delete">
-                          <span class="sig-name descname"><span class="pre">delete</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_evento</span></span><span class="o"><span
-                                class="pre">=</span></span><span class="default_value"><span
-                                class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                            href="#api.views.EventoView.delete" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes DELETE para eliminar un evento.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_evento</strong> – ID del evento a eliminar.</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con un mensaje de éxito o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.EventoView.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.EventoView.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.EventoView.get">
-                          <span class="sig-name descname"><span class="pre">get</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_evento</span></span><span class="o"><span
-                                class="pre">=</span></span><span class="default_value"><span
-                                class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                            href="#api.views.EventoView.get" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes GET para recuperar información sobre eventos.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_evento</strong> – ID del evento (opcional).</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles del evento o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.EventoView.post">
-                          <span class="sig-name descname"><span class="pre">post</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.EventoView.post" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes POST para crear un nuevo evento.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles del evento creado o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.FirmaUpdateView">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">FirmaUpdateView</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.FirmaUpdateView"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para gestionar la actualización de una firma existente en el sistema.</p>
-                      <dl class="simple">
-                        <dt>Métodos admitidos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>POST: Actualiza los detalles de una firma existente utilizando datos proporcionados en
-                                la solicitud.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>NOT_DATA_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.FirmaUpdateView.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.FirmaUpdateView.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.FirmaUpdateView.post">
-                          <span class="sig-name descname"><span class="pre">post</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_firma</span></span><span class="o"><span class="pre">=</span></span><span
-                              class="default_value"><span class="pre">None</span></span></em><span
-                            class="sig-paren">)</span><a class="headerlink" href="#api.views.FirmaUpdateView.post"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes POST para actualizar una firma existente.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_firma</strong> – Identificador único de la firma a actualizar
-                                    (opcional).</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles de la firma actualizada o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.FirmaView">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">FirmaView</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.FirmaView"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para gestionar operaciones relacionadas con firmas en el sistema.</p>
-                      <dl class="simple">
-                        <dt>Métodos admitidos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>GET: Obtiene detalles de las firmas. Puede obtener todas las firmas activas o una firma
-                                específica por su ID.</p>
-                            </li>
-                            <li>
-                              <p>POST: Crea una nueva firma utilizando datos proporcionados en la solicitud.</p>
-                            </li>
-                            <li>
-                              <p>DELETE: Desactiva (cambia el estado a “Inactivo”) una firma existente por su ID.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>NOT_DATA_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.</p>
-                            </li>
-                            <li>
-                              <p>ERROR_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud.
-                              </p>
-                            </li>
-                            <li>
-                              <p>SUCCESS_MESSAGE (dict): Mensaje de respuesta exitosa.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.FirmaView.delete">
-                          <span class="sig-name descname"><span class="pre">delete</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_firma</span></span><span class="o"><span class="pre">=</span></span><span
-                              class="default_value"><span class="pre">None</span></span></em><span
-                            class="sig-paren">)</span><a class="headerlink" href="#api.views.FirmaView.delete"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes DELETE para desactivar una firma existente.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_firma</strong> – Identificador único de la firma a desactivar
-                                    (opcional).</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse indicando el resultado de la operación o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.FirmaView.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.FirmaView.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.FirmaView.get">
-                          <span class="sig-name descname"><span class="pre">get</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_firma</span></span><span class="o"><span class="pre">=</span></span><span
-                              class="default_value"><span class="pre">None</span></span></em><span
-                            class="sig-paren">)</span><a class="headerlink" href="#api.views.FirmaView.get"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes GET para recuperar información sobre firmas.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_firma</strong> – Identificador único de la firma (opcional).</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles de las firmas o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.FirmaView.post">
-                          <span class="sig-name descname"><span class="pre">post</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.FirmaView.post" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes POST para crear una nueva firma.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles de la nueva firma creada o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.ParticipanteFileView">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">ParticipanteFileView</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.ParticipanteFileView"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para manejar la carga de participantes desde un archivo Excel.</p>
-                      <dl class="simple">
-                        <dt>Métodos admitidos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>POST: Procesa un archivo Excel enviado en la solicitud y crea participantes en base a
-                                los datos del archivo.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>NOT_DATA_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.</p>
-                            </li>
-                            <li>
-                              <p>ERROR_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud.
-                              </p>
-                            </li>
-                            <li>
-                              <p>SUCCESS_MESSAGE (dict): Mensaje de respuesta exitosa.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.ParticipanteFileView.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.ParticipanteFileView.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.ParticipanteFileView.post">
-                          <span class="sig-name descname"><span class="pre">post</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.ParticipanteFileView.post"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes POST para procesar un archivo Excel y crear participantes.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles de los participantes creados o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.ParticipanteView">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">ParticipanteView</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.ParticipanteView"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para gestionar operaciones relacionadas con participantes en el sistema.</p>
-                      <dl class="simple">
-                        <dt>Métodos admitidos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>GET: Obtiene detalles de los participantes. Puede obtener todos los participantes o un
-                                participante específico por su ID.</p>
-                            </li>
-                            <li>
-                              <p>POST: Crea un nuevo participante utilizando datos proporcionados en la solicitud.</p>
-                            </li>
-                            <li>
-                              <p>PUT: Actualiza los detalles de un participante existente utilizando datos
-                                proporcionados en la solicitud.</p>
-                            </li>
-                            <li>
-                              <p>DELETE: Elimina un participante existente por su ID.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>NOT_DATA_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.</p>
-                            </li>
-                            <li>
-                              <p>ERROR_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud.
-                              </p>
-                            </li>
-                            <li>
-                              <p>SUCCESS_MESSAGE (dict): Mensaje de respuesta exitosa.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.ParticipanteView.delete">
-                          <span class="sig-name descname"><span class="pre">delete</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_participante</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.ParticipanteView.delete"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes DELETE para eliminar un participante existente.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_participante</strong> – Identificador único del participante a eliminar.
-                                  </p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse indicando el resultado de la operación o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.ParticipanteView.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.ParticipanteView.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.ParticipanteView.get">
-                          <span class="sig-name descname"><span class="pre">get</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_participante</span></span><span class="o"><span
-                                class="pre">=</span></span><span class="default_value"><span
-                                class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                            href="#api.views.ParticipanteView.get" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes GET para recuperar información sobre participantes.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_participante</strong> – Identificador único del participante (opcional).
-                                  </p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles de los participantes o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.ParticipanteView.post">
-                          <span class="sig-name descname"><span class="pre">post</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.ParticipanteView.post"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes POST para crear un nuevo participante.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles del nuevo participante creado o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.ParticipanteView.put">
-                          <span class="sig-name descname"><span class="pre">put</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_participante</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.ParticipanteView.put"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes PUT para actualizar un participante existente.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_participante</strong> – Identificador único del participante a
-                                    actualizar.</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles del participante actualizado o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.ParticipantesEventoView">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">ParticipantesEventoView</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.ParticipantesEventoView"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para obtener la lista de participantes asociados a un evento mediante su identificador.
-                      </p>
-                      <dl class="simple">
-                        <dt>Métodos admitidos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>GET: Obtiene la lista de participantes asociados al evento.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>NOT_DATA_MESSAGE (dict): Mensaje de respuesta cuando no se encuentran certificados o
-                                participantes asociados al evento.</p>
-                            </li>
-                            <li>
-                              <p>ERROR_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud.
-                              </p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.ParticipantesEventoView.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.ParticipantesEventoView.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.ParticipantesEventoView.get">
-                          <span class="sig-name descname"><span class="pre">get</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_evento</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.ParticipantesEventoView.get"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes GET para obtener la lista de participantes asociados a un evento
-                            mediante su identificador.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_evento</strong> – Identificador del evento.</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con la lista de participantes asociados al evento o una respuesta de
-                                error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py class">
-                    <dt class="sig sig-object py" id="api.views.PlantillaView">
-                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
-                        class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">PlantillaView</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="o"><span
-                            class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.PlantillaView"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Bases: <code
-                          class="xref py py-class docutils literal notranslate"><span class="pre">View</span></code></p>
-                      <p>Vista para manejar operaciones relacionadas con plantillas.</p>
-                      <dl class="simple">
-                        <dt>Métodos admitidos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>GET: Recupera información sobre plantillas o descarga una plantilla específica.</p>
-                            </li>
-                            <li>
-                              <p>POST: Crea una nueva plantilla o actualiza una existente.</p>
-                            </li>
-                            <li>
-                              <p>DELETE: Elimina una plantilla existente.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                        <dt>Atributos:</dt>
-                        <dd>
-                          <ul class="simple">
-                            <li>
-                              <p>NOT_DATA_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.</p>
-                            </li>
-                            <li>
-                              <p>ERROR_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud.
-                              </p>
-                            </li>
-                            <li>
-                              <p>SUCCESS_MESSAGE (dict): Mensaje de respuesta exitosa.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.PlantillaView.delete">
-                          <span class="sig-name descname"><span class="pre">delete</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_plantilla</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.PlantillaView.delete"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes DELETE para eliminar una plantilla existente.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_plantilla</strong> – ID de la plantilla a eliminar.</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con mensaje de éxito o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.PlantillaView.dispatch">
-                          <span class="sig-name descname"><span class="pre">dispatch</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span
-                                class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,
-                          <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span
-                                class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a
-                            class="headerlink" href="#api.views.PlantillaView.dispatch"
-                            title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Despacha la solicitud, excluyendo la verificación CSRF.</p>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.PlantillaView.get">
-                          <span class="sig-name descname"><span class="pre">get</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_plantilla</span></span><span class="o"><span
-                                class="pre">=</span></span><span class="default_value"><span
-                                class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                            href="#api.views.PlantillaView.get" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes GET para recuperar información sobre plantillas o descargar una
-                            plantilla específica.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_plantilla</strong> – ID de la plantilla a recuperar o descargar
-                                    (opcional).</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles de la plantilla o una respuesta de error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                      <dl class="py method">
-                        <dt class="sig sig-object py" id="api.views.PlantillaView.post">
-                          <span class="sig-name descname"><span class="pre">post</span></span><span
-                            class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                                class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span
-                                class="pre">id_plantilla</span></span><span class="o"><span
-                                class="pre">=</span></span><span class="default_value"><span
-                                class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink"
-                            href="#api.views.PlantillaView.post" title="Link to this definition">#</a>
-                        </dt>
-                        <dd>
-                          <p>Maneja las solicitudes POST para crear una nueva plantilla o actualizar una existente.</p>
-                          <dl class="field-list simple">
-                            <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                            <dd class="field-odd">
-                              <ul class="simple">
-                                <li>
-                                  <p><strong>request</strong> – Objeto de solicitud Django.</p>
-                                </li>
-                                <li>
-                                  <p><strong>id_plantilla</strong> – ID de la plantilla a actualizar (opcional).</p>
-                                </li>
-                              </ul>
-                            </dd>
-                            <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-                            <dd class="field-even">
-                              <p>JsonResponse con detalles de la plantilla creada o actualizada o una respuesta de
-                                error.</p>
-                            </dd>
-                          </dl>
-                        </dd>
-                      </dl>
-
-                    </dd>
-                  </dl>
-
-                  <dl class="py function">
-                    <dt class="sig sig-object py" id="api.views.generar_certificado_pdf">
-                      <span class="sig-prename descclassname"><span class="pre">api.views.</span></span><span
-                        class="sig-name descname"><span class="pre">generar_certificado_pdf</span></span><span
-                        class="sig-paren">(</span><em class="sig-param"><span class="n"><span
-                            class="pre">certificado</span></span></em>, <em class="sig-param"><span class="n"><span
-                            class="pre">plantilla_path</span></span></em>, <em class="sig-param"><span class="n"><span
-                            class="pre">detalle_certificado1</span></span></em>, <em class="sig-param"><span
-                          class="n"><span class="pre">detalle_certificado2</span></span></em><span
-                        class="sig-paren">)</span><a class="headerlink" href="#api.views.generar_certificado_pdf"
-                        title="Link to this definition">#</a>
-                    </dt>
-                    <dd>
-                      <p>Genera un certificado en formato PDF combinando la información del certificado, la plantilla,
-                        y las firmas proporcionadas.</p>
-                      <dl class="field-list simple">
-                        <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-                        <dd class="field-odd">
-                          <ul class="simple">
-                            <li>
-                              <p><strong>certificado</strong> – Objeto Certificado que contiene la información necesaria
-                                para generar el certificado.</p>
-                            </li>
-                            <li>
-                              <p><strong>plantilla_path</strong> – Ruta del archivo PDF de la plantilla del certificado.
-                              </p>
-                            </li>
-                            <li>
-                              <p><strong>detalle_certificado1</strong> – Objeto Detalle_Certificado que contiene la
-                                información de la primera firma.</p>
-                            </li>
-                            <li>
-                              <p><strong>detalle_certificado2</strong> – Objeto Detalle_Certificado que contiene la
-                                información de la segunda firma.</p>
-                            </li>
-                          </ul>
-                        </dd>
-                      </dl>
-                    </dd>
-                  </dl>
-
-                </section>
-              </section>
-
-
-            </article>
-
-
-
-
-
-            <footer class="prev-next-footer">
-
-              <div class="prev-next-area">
-                <a class="left-prev" href="index.html" title="página anterior">
-                  <i class="fa-solid fa-angle-left"></i>
-                  <div class="prev-next-info">
-                    <p class="prev-next-subtitle">anterior</p>
-                    <p class="prev-next-title">Welcome to Certech’s documentation!</p>
-                  </div>
-                </a>
-                <a class="right-next" href="CertechBakend.html" title="siguiente página">
-                  <div class="prev-next-info">
-                    <p class="prev-next-subtitle">siguiente</p>
-                    <p class="prev-next-title">CertechBakend package</p>
-                  </div>
-                  <i class="fa-solid fa-angle-right"></i>
-                </a>
-              </div>
-            </footer>
-
-          </div>
-
-
-
-          <div class="bd-sidebar-secondary bd-toc">
-            <div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-              <div class="sidebar-secondary-item">
-                <div id="pst-page-navigation-heading-2" class="page-toc tocsection onthispage">
-                  <i class="fa-solid fa-list"></i> En esta página
-                </div>
-                <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-                  <ul class="visible nav section-nav flex-column">
-                    <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link"
-                        href="#submodules">Submodules</a></li>
-                    <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link"
-                        href="#module-api.models">api.models module</a>
-                      <ul class="nav section-nav flex-column">
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.models.Administrador"><code
-                              class="docutils literal notranslate"><span class="pre">Administrador</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Administrador.DoesNotExist"><code
-                                  class="docutils literal notranslate"><span class="pre">Administrador.DoesNotExist</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Administrador.MultipleObjectsReturned"><code
-                                  class="docutils literal notranslate"><span class="pre">Administrador.MultipleObjectsReturned</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Administrador.cedula"><code
-                                  class="docutils literal notranslate"><span class="pre">Administrador.cedula</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Administrador.celular"><code
-                                  class="docutils literal notranslate"><span class="pre">Administrador.celular</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Administrador.clave"><code
-                                  class="docutils literal notranslate"><span class="pre">Administrador.clave</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Administrador.correo"><code
-                                  class="docutils literal notranslate"><span class="pre">Administrador.correo</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Administrador.id_administrador"><code
-                                  class="docutils literal notranslate"><span class="pre">Administrador.id_administrador</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Administrador.objects"><code
-                                  class="docutils literal notranslate"><span class="pre">Administrador.objects</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Administrador.usuario"><code
-                                  class="docutils literal notranslate"><span class="pre">Administrador.usuario</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.models.Certificado"><code
-                              class="docutils literal notranslate"><span class="pre">Certificado</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.DoesNotExist"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.DoesNotExist</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.MultipleObjectsReturned"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.MultipleObjectsReturned</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.codigo_unico"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.codigo_unico</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.fecha"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.fecha</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.get_next_by_fecha"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.get_next_by_fecha()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.get_previous_by_fecha"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.get_previous_by_fecha()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.id_administrador"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.id_administrador</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.id_certificado"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.id_certificado</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.id_evento"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.id_evento</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.id_participante"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.id_participante</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.id_plantilla"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.id_plantilla</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.objects"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.objects</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Certificado.url"><code
-                                  class="docutils literal notranslate"><span class="pre">Certificado.url</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.models.Detalle_Certificado"><code
-                              class="docutils literal notranslate"><span class="pre">Detalle_Certificado</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Detalle_Certificado.DoesNotExist"><code
-                                  class="docutils literal notranslate"><span class="pre">Detalle_Certificado.DoesNotExist</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Detalle_Certificado.MultipleObjectsReturned"><code
-                                  class="docutils literal notranslate"><span class="pre">Detalle_Certificado.MultipleObjectsReturned</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Detalle_Certificado.id_certificado"><code
-                                  class="docutils literal notranslate"><span class="pre">Detalle_Certificado.id_certificado</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Detalle_Certificado.id_detalle"><code
-                                  class="docutils literal notranslate"><span class="pre">Detalle_Certificado.id_detalle</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Detalle_Certificado.id_firma"><code
-                                  class="docutils literal notranslate"><span class="pre">Detalle_Certificado.id_firma</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Detalle_Certificado.objects"><code
-                                  class="docutils literal notranslate"><span class="pre">Detalle_Certificado.objects</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.models.Evento"><code
-                              class="docutils literal notranslate"><span class="pre">Evento</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.DoesNotExist"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.DoesNotExist</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.MultipleObjectsReturned"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.MultipleObjectsReturned</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.descripcion_evento"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.descripcion_evento</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.fecha_creacion"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.fecha_creacion</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.get_next_by_fecha_creacion"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.get_next_by_fecha_creacion()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.get_previous_by_fecha_creacion"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.get_previous_by_fecha_creacion()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.id_evento"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.id_evento</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.logo"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.logo</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.nombre_evento"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.nombre_evento</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.objects"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.objects</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.portada"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.portada</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Evento.tipo_evento"><code
-                                  class="docutils literal notranslate"><span class="pre">Evento.tipo_evento</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.models.Firma"><code
-                              class="docutils literal notranslate"><span class="pre">Firma</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Firma.DoesNotExist"><code
-                                  class="docutils literal notranslate"><span class="pre">Firma.DoesNotExist</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Firma.MultipleObjectsReturned"><code
-                                  class="docutils literal notranslate"><span class="pre">Firma.MultipleObjectsReturned</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Firma.cargo_propietario"><code
-                                  class="docutils literal notranslate"><span class="pre">Firma.cargo_propietario</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Firma.estado_firma"><code
-                                  class="docutils literal notranslate"><span class="pre">Firma.estado_firma</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Firma.firma"><code
-                                  class="docutils literal notranslate"><span class="pre">Firma.firma</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Firma.id_firma"><code
-                                  class="docutils literal notranslate"><span class="pre">Firma.id_firma</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Firma.objects"><code
-                                  class="docutils literal notranslate"><span class="pre">Firma.objects</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Firma.propietario_firma"><code
-                                  class="docutils literal notranslate"><span class="pre">Firma.propietario_firma</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.models.Participante"><code
-                              class="docutils literal notranslate"><span class="pre">Participante</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Participante.DoesNotExist"><code
-                                  class="docutils literal notranslate"><span class="pre">Participante.DoesNotExist</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Participante.MultipleObjectsReturned"><code
-                                  class="docutils literal notranslate"><span class="pre">Participante.MultipleObjectsReturned</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Participante.cedula"><code
-                                  class="docutils literal notranslate"><span class="pre">Participante.cedula</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Participante.celular"><code
-                                  class="docutils literal notranslate"><span class="pre">Participante.celular</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Participante.correo"><code
-                                  class="docutils literal notranslate"><span class="pre">Participante.correo</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Participante.id_participante"><code
-                                  class="docutils literal notranslate"><span class="pre">Participante.id_participante</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Participante.nombre_apellido"><code
-                                  class="docutils literal notranslate"><span class="pre">Participante.nombre_apellido</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Participante.objects"><code
-                                  class="docutils literal notranslate"><span class="pre">Participante.objects</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.models.Plantilla"><code
-                              class="docutils literal notranslate"><span class="pre">Plantilla</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Plantilla.DoesNotExist"><code
-                                  class="docutils literal notranslate"><span class="pre">Plantilla.DoesNotExist</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Plantilla.MultipleObjectsReturned"><code
-                                  class="docutils literal notranslate"><span class="pre">Plantilla.MultipleObjectsReturned</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Plantilla.id_plantilla"><code
-                                  class="docutils literal notranslate"><span class="pre">Plantilla.id_plantilla</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Plantilla.objects"><code
-                                  class="docutils literal notranslate"><span class="pre">Plantilla.objects</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.models.Plantilla.plantilla"><code
-                                  class="docutils literal notranslate"><span class="pre">Plantilla.plantilla</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link"
-                        href="#module-api.views">api.views module</a>
-                      <ul class="nav section-nav flex-column">
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.AdministradorView"><code
-                              class="docutils literal notranslate"><span class="pre">AdministradorView</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.AdministradorView.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">AdministradorView.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.AdministradorView.get"><code
-                                  class="docutils literal notranslate"><span class="pre">AdministradorView.get()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.CertificadoParticipanteView"><code
-                              class="docutils literal notranslate"><span class="pre">CertificadoParticipanteView</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.CertificadoParticipanteView.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">CertificadoParticipanteView.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.CertificadoParticipanteView.get"><code
-                                  class="docutils literal notranslate"><span class="pre">CertificadoParticipanteView.get()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.CertificadoValidoView"><code
-                              class="docutils literal notranslate"><span class="pre">CertificadoValidoView</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.CertificadoValidoView.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">CertificadoValidoView.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.CertificadoValidoView.get"><code
-                                  class="docutils literal notranslate"><span class="pre">CertificadoValidoView.get()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.CertificadoView"><code
-                              class="docutils literal notranslate"><span class="pre">CertificadoView</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.CertificadoView.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">CertificadoView.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.CertificadoView.post"><code
-                                  class="docutils literal notranslate"><span class="pre">CertificadoView.post()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.EventoUpdate"><code
-                              class="docutils literal notranslate"><span class="pre">EventoUpdate</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.EventoUpdate.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">EventoUpdate.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.EventoUpdate.post"><code
-                                  class="docutils literal notranslate"><span class="pre">EventoUpdate.post()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.EventoView"><code
-                              class="docutils literal notranslate"><span class="pre">EventoView</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.EventoView.delete"><code
-                                  class="docutils literal notranslate"><span class="pre">EventoView.delete()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.EventoView.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">EventoView.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.EventoView.get"><code
-                                  class="docutils literal notranslate"><span class="pre">EventoView.get()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.EventoView.post"><code
-                                  class="docutils literal notranslate"><span class="pre">EventoView.post()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.FirmaUpdateView"><code
-                              class="docutils literal notranslate"><span class="pre">FirmaUpdateView</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.FirmaUpdateView.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">FirmaUpdateView.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.FirmaUpdateView.post"><code
-                                  class="docutils literal notranslate"><span class="pre">FirmaUpdateView.post()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.FirmaView"><code
-                              class="docutils literal notranslate"><span class="pre">FirmaView</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.FirmaView.delete"><code
-                                  class="docutils literal notranslate"><span class="pre">FirmaView.delete()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.FirmaView.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">FirmaView.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.FirmaView.get"><code
-                                  class="docutils literal notranslate"><span class="pre">FirmaView.get()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.FirmaView.post"><code
-                                  class="docutils literal notranslate"><span class="pre">FirmaView.post()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.ParticipanteFileView"><code
-                              class="docutils literal notranslate"><span class="pre">ParticipanteFileView</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.ParticipanteFileView.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">ParticipanteFileView.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.ParticipanteFileView.post"><code
-                                  class="docutils literal notranslate"><span class="pre">ParticipanteFileView.post()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.ParticipanteView"><code
-                              class="docutils literal notranslate"><span class="pre">ParticipanteView</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.ParticipanteView.delete"><code
-                                  class="docutils literal notranslate"><span class="pre">ParticipanteView.delete()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.ParticipanteView.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">ParticipanteView.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.ParticipanteView.get"><code
-                                  class="docutils literal notranslate"><span class="pre">ParticipanteView.get()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.ParticipanteView.post"><code
-                                  class="docutils literal notranslate"><span class="pre">ParticipanteView.post()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.ParticipanteView.put"><code
-                                  class="docutils literal notranslate"><span class="pre">ParticipanteView.put()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.ParticipantesEventoView"><code
-                              class="docutils literal notranslate"><span class="pre">ParticipantesEventoView</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.ParticipantesEventoView.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">ParticipantesEventoView.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.ParticipantesEventoView.get"><code
-                                  class="docutils literal notranslate"><span class="pre">ParticipantesEventoView.get()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.PlantillaView"><code
-                              class="docutils literal notranslate"><span class="pre">PlantillaView</span></code></a>
-                          <ul class="nav section-nav flex-column">
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.PlantillaView.delete"><code
-                                  class="docutils literal notranslate"><span class="pre">PlantillaView.delete()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.PlantillaView.dispatch"><code
-                                  class="docutils literal notranslate"><span class="pre">PlantillaView.dispatch()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.PlantillaView.get"><code
-                                  class="docutils literal notranslate"><span class="pre">PlantillaView.get()</span></code></a>
-                            </li>
-                            <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link"
-                                href="#api.views.PlantillaView.post"><code
-                                  class="docutils literal notranslate"><span class="pre">PlantillaView.post()</span></code></a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link"
-                            href="#api.views.generar_certificado_pdf"><code
-                              class="docutils literal notranslate"><span class="pre">generar_certificado_pdf()</span></code></a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-
-              <div class="sidebar-secondary-item">
-
-                <div class="tocsection sourcelink">
-                  <a href="_sources/api.rst.txt">
-                    <i class="fa-solid fa-file-lines"></i> Mostrar el código
-                  </a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-
-        </div>
-        <footer class="bd-footer-content">
-
-        </footer>
-
-      </main>
-    </div>
-  </div>
-
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
-
-  <footer class="bd-footer">
-    <div class="bd-footer__inner bd-page-width">
-
-      <div class="footer-items__start">
-
-        <div class="footer-item">
-
-          <p class="copyright">
-
-            © Copyright 2024, José Ojeda, Karen Moyolema, Eduardo Pila, Anthony Solis, Jonathan Villafuerte.
-            <br />
-
-          </p>
-        </div>
-
-        <div class="footer-item">
-
-          <p class="sphinx-version">
-            Creado usando <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
-            <br />
-          </p>
-        </div>
-
-      </div>
-
-
-
-      <div class="footer-items__end">
-
-        <div class="footer-item">
-          <p class="theme-version">
-            Construido con el <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">Tema PyData
-              Sphinx</a> 0.15.1.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </footer>
-</body>
-
-</html>
+Atributos:
+
+- id\_firma (AutoField): Identificador único de la firma (clave primaria).
+- propietario\_firma (CharField): Nombre del propietario de la firma.
+- cargo\_propietario (CharField): Cargo del propietario de la firma.
+- firma (CharField): Representación de la firma (puede ser una ruta de archivo, URL o datos de imagen, dependiendo de la implementación).
+- estado\_firma (CharField): Estado actual de la firma (por ejemplo, activa, inactiva, pendiente).
+
+Meta:
+
+- managed (bool): Indica si Django manejará la creación de la tabla en la base de datos (False en este caso).
+- db\_table (str): Nombre de la tabla en la base de datos (“firmas” en este caso).
+
+Ejemplo de uso:
+
+firma = Firma( propietario\_firma=”Nombre Propietario”, cargo\_propietario=”Cargo del Propietario”, firma=”ruta\_o\_datos\_de\_firma”, estado\_firma=”Activa” )
+
+firma.save()
+
+*exception* DoesNotExist[#](#api.models.firma.doesnotexist "Link to this definition")
+
+Bases: ObjectDoesNotExist
+
+*exception* MultipleObjectsReturned[#](#api.models.firma.multipleobjectsreturned "Link to this definition")
+
+Bases: MultipleObjectsReturned
+
+cargo\_propietario[#](#api.models.firma.cargo_propietario "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+
+estado\_firma[#](#api.models.firma.estado_firma "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+
+firma[#](#api.models.firma.firma "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+
+id\_firma[#](#api.models.firma.id_firma "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+
+objects *= <django.db.models.manager.Manager object>[#](#api.models.firma.objects "Link to this definition")*
+
+propietario\_firma[#](#api.models.firma.propietario_firma "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+
+*class* api.models.Participante(*\*args*, *\*\*kwargs*)[#](#api.models.participante "Link to this definition")
+
+Bases: Model
+
+Modelo para representar a un participante en el sistema.
+
+Atributos:
+
+- id\_participante (AutoField): Identificador único del participante (clave primaria).
+- cedula (CharField): Número de cédula del participante.
+- nombre\_apellido (CharField): Nombre y apellido del participante.
+- celular (CharField): Número de teléfono celular del participante.
+- correo (CharField): Dirección de correo electrónico del participante.
+
+Meta:
+
+- managed (bool): Indica si Django manejará la creación de la tabla en la base de datos (False en este caso).
+- db\_table (str): Nombre de la tabla en la base de datos (“participantes” en este caso). 
+
+Ejemplo de uso:
+
+participante = Participante( cedula=”1234567890”, nombre\_apellido=”Nombre Apellido”, celular=”1234567890”, [correo=”participante@example.com](mailto:correo='participante%40example.com)” ) 
+
+participante.save()
+
+*exception* DoesNotExist[#](#api.models.participante.doesnotexist "Link to this definition")
+
+Bases: ObjectDoesNotExist
+
+*exception* MultipleObjectsReturned[#](#api.models.participante.multipleobjectsreturned "Link to this definition")
+
+Bases: MultipleObjectsReturned
+
+cedula[#](#api.models.participante.cedula "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+
+celular[#](#api.models.participante.celular "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+
+correo[#](#api.models.participante.correo "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+
+id\_participante[#](#api.models.participante.id_participante "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+
+nombre\_apellido[#](#api.models.participante.nombre_apellido "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+
+objects *= <django.db.models.manager.Manager object>[#](#api.models.participante.objects "Link to this definition")*
+
+*class* api.models.Plantilla(*\*args*, *\*\*kwargs*)[#](#api.models.plantilla "Link to this definition")
+
+Bases: Model
+
+Modelo para representar una plantilla en el sistema.
+
+Atributos:
+
+- id\_plantilla (AutoField): Identificador único de la plantilla (clave primaria).
+- plantilla (CharField): Ruta o enlace a la plantilla.
+
+Meta:
+
+- managed (bool): Indica si Django manejará la creación de la tabla en la base de datos (False en este caso).
+- db\_table (str): Nombre de la tabla en la base de datos (“plantillas” en este caso).
+
+Ejemplo de uso:
+
+plantilla = Plantilla( plantilla=”ruta\_o\_enlace\_a\_la\_plantilla”, ) plantilla.save()
+
+*exception* DoesNotExist[#](#api.models.plantilla.doesnotexist "Link to this definition")
+
+Bases: ObjectDoesNotExist
+
+*exception* MultipleObjectsReturned[#](#api.models.plantilla.multipleobjectsreturned "Link to this definition")
+
+Bases: MultipleObjectsReturned
+
+id\_plantilla[#](#api.models.plantilla.id_plantilla "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+
+objects *= <django.db.models.manager.Manager object>[#](#api.models.plantilla.objects "Link to this definition")*
+
+plantilla[#](#api.models.plantilla.plantilla "Link to this definition")
+
+A wrapper for a deferred-loading field. When the value is read from this object the first time, the query is executed.
+## <a name="module-api.views"></a>**api.views module[#**](#module-api.views "Link to this heading")**
+*class* api.views.AdministradorView(*\*\*kwargs*)[#](#api.views.administradorview "Link to this definition")
+
+Bases: View
+
+Vista para manejar operaciones relacionadas con administradores.
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.administradorview.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+get(*request*, *usuario=None*, *clave=None*)[#](#api.views.administradorview.get "Link to this definition")
+
+Maneja las solicitudes GET para recuperar información sobre administradores.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **usuario** – Nombre de usuario (opcional).
+- **clave** – Clave (opcional).
+
+Devuelve:
+
+JsonResponse con los datos del administrador o una respuesta de error.
+
+*class* api.views.CertificadoParticipanteView(*\*\*kwargs*)[#](#api.views.certificadoparticipanteview "Link to this definition")
+
+Bases: View
+
+Vista para obtener los certificados asociados a un participante mediante su número de cédula. 
+
+Métodos admitidos:
+
+- GET: Obtiene la lista de certificados asociados al participante.
+
+Atributos:
+
+- NOT\_DATA\_MESSAGE (dict): Mensaje de respuesta cuando no se encuentra el participante o sus certificados.
+- ERROR\_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud. 
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.certificadoparticipanteview.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+get(*request*, *cedula*)[#](#api.views.certificadoparticipanteview.get "Link to this definition")
+
+Maneja las solicitudes GET para obtener la lista de certificados asociados a un participante mediante su número de cédula.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **cedula** – Número de cédula del participante.
+
+Devuelve:
+
+JsonResponse con la lista de certificados asociados al participante o una respuesta de error.
+
+*class* api.views.CertificadoValidoView(*\*\*kwargs*)[#](#api.views.certificadovalidoview "Link to this definition")
+
+Bases: View
+
+Vista para verificar la validez de un certificado mediante su código único.
+
+Métodos admitidos:
+
+- GET: Obtiene detalles del certificado válido asociado al código único proporcionado. 
+
+Atributos:
+
+- NOT\_DATA\_MESSAGE (dict): Mensaje de respuesta cuando no se encuentra el certificado. 
+- ERROR\_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud. 
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.certificadovalidoview.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+get(*request*, *codigo\_unico*)[#](#api.views.certificadovalidoview.get "Link to this definition")
+
+Maneja las solicitudes GET para obtener detalles del certificado válido asociado al código único proporcionado.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **codigo\_unico** – Código único asociado al certificado.
+
+Devuelve:
+
+JsonResponse con detalles del certificado válido o una respuesta de error.
+
+*class* api.views.CertificadoView(*\*\*kwargs*)[#](#api.views.certificadoview "Link to this definition")
+
+Bases: View
+
+Vista para manejar operaciones relacionadas con certificados.
+
+Métodos admitidos:
+
+- POST: Crea un nuevo certificado con las firmas proporcionadas y genera el certificado en formato PDF.
+
+Atributos:
+
+- ERROR\_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud. 
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.certificadoview.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+post(*request*, *id\_firma1*, *id\_firma2*)[#](#api.views.certificadoview.post "Link to this definition")
+
+Maneja las solicitudes POST para crear un nuevo certificado con las firmas proporcionadas y generar el certificado en formato PDF.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_firma1** – ID de la primera firma asociada al certificado.
+- **id\_firma2** – ID de la segunda firma asociada al certificado.
+
+Devuelve:
+
+JsonResponse con detalles del certificado creado o una respuesta de error.
+
+*class* api.views.EventoUpdate(*\*\*kwargs*)[#](#api.views.eventoupdate "Link to this definition")
+
+Bases: View
+
+Vista para manejar la actualización de eventos.
+
+Métodos admitidos:
+
+- POST: Actualiza un evento existente según el ID proporcionado.
+
+Atributos:
+
+- NOT\_DATA\_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.
+- ERROR\_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud. 
+- SUCCESS\_MESSAGE (dict): Mensaje de respuesta exitosa.
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.eventoupdate.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+post(*request*, *id\_evento*)[#](#api.views.eventoupdate.post "Link to this definition")
+
+Maneja las solicitudes POST para actualizar un evento existente.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_evento** – ID del evento a actualizar.
+
+Devuelve:
+
+JsonResponse con detalles del evento actualizado o una respuesta de error.
+
+*class* api.views.EventoView(*\*\*kwargs*)[#](#api.views.eventoview "Link to this definition")
+
+Bases: View
+
+Vista para manejar operaciones relacionadas con eventos.
+
+Métodos admitidos:
+
+- GET: Recupera información sobre eventos, ya sea un evento específico o todos los eventos disponibles.
+- POST: Crea un nuevo evento a partir de los datos proporcionados en la solicitud.
+- DELETE: Elimina un evento específico según el ID proporcionado.
+
+Atributos:
+
+- NOT\_DATA\_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.
+- ERROR\_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud. 
+- SUCCESS\_MESSAGE (dict): Mensaje de respuesta exitosa.
+
+delete(*request*, *id\_evento=None*)[#](#api.views.eventoview.delete "Link to this definition")
+
+Maneja las solicitudes DELETE para eliminar un evento.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_evento** – ID del evento a eliminar.
+
+Devuelve:
+
+JsonResponse con un mensaje de éxito o una respuesta de error.
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.eventoview.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+get(*request*, *id\_evento=None*)[#](#api.views.eventoview.get "Link to this definition")
+
+Maneja las solicitudes GET para recuperar información sobre eventos.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_evento** – ID del evento (opcional).
+
+Devuelve:
+
+JsonResponse con detalles del evento o una respuesta de error.
+
+post(*request*)[#](#api.views.eventoview.post "Link to this definition")
+
+Maneja las solicitudes POST para crear un nuevo evento.
+
+Parámetros:
+
+**request** – Objeto de solicitud Django.
+
+Devuelve:
+
+JsonResponse con detalles del evento creado o una respuesta de error.
+
+*class* api.views.FirmaUpdateView(*\*\*kwargs*)[#](#api.views.firmaupdateview "Link to this definition")
+
+Bases: View
+
+Vista para gestionar la actualización de una firma existente en el sistema.
+
+Métodos admitidos:
+
+- POST: Actualiza los detalles de una firma existente utilizando datos proporcionados en la solicitud.
+
+Atributos:
+
+- NOT\_DATA\_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.firmaupdateview.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+post(*request*, *id\_firma=None*)[#](#api.views.firmaupdateview.post "Link to this definition")
+
+Maneja las solicitudes POST para actualizar una firma existente.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_firma** – Identificador único de la firma a actualizar (opcional).
+
+Devuelve:
+
+JsonResponse con detalles de la firma actualizada o una respuesta de error.
+
+*class* api.views.FirmaView(*\*\*kwargs*)[#](#api.views.firmaview "Link to this definition")
+
+Bases: View
+
+Vista para gestionar operaciones relacionadas con firmas en el sistema.
+
+Métodos admitidos:
+
+- GET: Obtiene detalles de las firmas. Puede obtener todas las firmas activas o una firma específica por su ID.
+- POST: Crea una nueva firma utilizando datos proporcionados en la solicitud.
+- DELETE: Desactiva (cambia el estado a “Inactivo”) una firma existente por su ID.
+
+Atributos:
+
+- NOT\_DATA\_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.
+- ERROR\_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud. 
+- SUCCESS\_MESSAGE (dict): Mensaje de respuesta exitosa.
+
+delete(*request*, *id\_firma=None*)[#](#api.views.firmaview.delete "Link to this definition")
+
+Maneja las solicitudes DELETE para desactivar una firma existente.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_firma** – Identificador único de la firma a desactivar (opcional).
+
+Devuelve:
+
+JsonResponse indicando el resultado de la operación o una respuesta de error.
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.firmaview.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+get(*request*, *id\_firma=None*)[#](#api.views.firmaview.get "Link to this definition")
+
+Maneja las solicitudes GET para recuperar información sobre firmas.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_firma** – Identificador único de la firma (opcional).
+
+Devuelve:
+
+JsonResponse con detalles de las firmas o una respuesta de error.
+
+post(*request*)[#](#api.views.firmaview.post "Link to this definition")
+
+Maneja las solicitudes POST para crear una nueva firma.
+
+Parámetros:
+
+**request** – Objeto de solicitud Django.
+
+Devuelve:
+
+JsonResponse con detalles de la nueva firma creada o una respuesta de error.
+
+*class* api.views.ParticipanteFileView(*\*\*kwargs*)[#](#api.views.participantefileview "Link to this definition")
+
+Bases: View
+
+Vista para manejar la carga de participantes desde un archivo Excel.
+
+Métodos admitidos:
+
+- POST: Procesa un archivo Excel enviado en la solicitud y crea participantes en base a los datos del archivo.
+
+Atributos:
+
+- NOT\_DATA\_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.
+- ERROR\_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud. 
+- SUCCESS\_MESSAGE (dict): Mensaje de respuesta exitosa.
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.participantefileview.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+post(*request*)[#](#api.views.participantefileview.post "Link to this definition")
+
+Maneja las solicitudes POST para procesar un archivo Excel y crear participantes.
+
+Parámetros:
+
+**request** – Objeto de solicitud Django.
+
+Devuelve:
+
+JsonResponse con detalles de los participantes creados o una respuesta de error.
+
+*class* api.views.ParticipanteView(*\*\*kwargs*)[#](#api.views.participanteview "Link to this definition")
+
+Bases: View
+
+Vista para gestionar operaciones relacionadas con participantes en el sistema.
+
+Métodos admitidos:
+
+- GET: Obtiene detalles de los participantes. Puede obtener todos los participantes o un participante específico por su ID.
+- POST: Crea un nuevo participante utilizando datos proporcionados en la solicitud.
+- PUT: Actualiza los detalles de un participante existente utilizando datos proporcionados en la solicitud.
+- DELETE: Elimina un participante existente por su ID.
+
+Atributos:
+
+- NOT\_DATA\_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.
+- ERROR\_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud. 
+- SUCCESS\_MESSAGE (dict): Mensaje de respuesta exitosa.
+
+delete(*request*, *id\_participante*)[#](#api.views.participanteview.delete "Link to this definition")
+
+Maneja las solicitudes DELETE para eliminar un participante existente.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_participante** – Identificador único del participante a eliminar. 
+
+Devuelve:
+
+JsonResponse indicando el resultado de la operación o una respuesta de error.
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.participanteview.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+get(*request*, *id\_participante=None*)[#](#api.views.participanteview.get "Link to this definition")
+
+Maneja las solicitudes GET para recuperar información sobre participantes.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_participante** – Identificador único del participante (opcional). 
+
+Devuelve:
+
+JsonResponse con detalles de los participantes o una respuesta de error.
+
+post(*request*)[#](#api.views.participanteview.post "Link to this definition")
+
+Maneja las solicitudes POST para crear un nuevo participante.
+
+Parámetros:
+
+**request** – Objeto de solicitud Django.
+
+Devuelve:
+
+JsonResponse con detalles del nuevo participante creado o una respuesta de error.
+
+put(*request*, *id\_participante*)[#](#api.views.participanteview.put "Link to this definition")
+
+Maneja las solicitudes PUT para actualizar un participante existente.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_participante** – Identificador único del participante a actualizar.
+
+Devuelve:
+
+JsonResponse con detalles del participante actualizado o una respuesta de error.
+
+*class* api.views.ParticipantesEventoView(*\*\*kwargs*)[#](#api.views.participanteseventoview "Link to this definition")
+
+Bases: View
+
+Vista para obtener la lista de participantes asociados a un evento mediante su identificador. 
+
+Métodos admitidos:
+
+- GET: Obtiene la lista de participantes asociados al evento.
+
+Atributos:
+
+- NOT\_DATA\_MESSAGE (dict): Mensaje de respuesta cuando no se encuentran certificados o participantes asociados al evento.
+- ERROR\_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud. 
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.participanteseventoview.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+get(*request*, *id\_evento*)[#](#api.views.participanteseventoview.get "Link to this definition")
+
+Maneja las solicitudes GET para obtener la lista de participantes asociados a un evento mediante su identificador.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_evento** – Identificador del evento.
+
+Devuelve:
+
+JsonResponse con la lista de participantes asociados al evento o una respuesta de error.
+
+*class* api.views.PlantillaView(*\*\*kwargs*)[#](#api.views.plantillaview "Link to this definition")
+
+Bases: View
+
+Vista para manejar operaciones relacionadas con plantillas.
+
+Métodos admitidos:
+
+- GET: Recupera información sobre plantillas o descarga una plantilla específica.
+- POST: Crea una nueva plantilla o actualiza una existente.
+- DELETE: Elimina una plantilla existente.
+
+Atributos:
+
+- NOT\_DATA\_MESSAGE (dict): Mensaje de respuesta cuando no hay datos disponibles.
+- ERROR\_MESSAGE (dict): Mensaje de respuesta cuando ocurre un error durante la solicitud. 
+- SUCCESS\_MESSAGE (dict): Mensaje de respuesta exitosa.
+
+delete(*request*, *id\_plantilla*)[#](#api.views.plantillaview.delete "Link to this definition")
+
+Maneja las solicitudes DELETE para eliminar una plantilla existente.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_plantilla** – ID de la plantilla a eliminar.
+
+Devuelve:
+
+JsonResponse con mensaje de éxito o una respuesta de error.
+
+dispatch(*request*, *\*args*, *\*\*kwargs*)[#](#api.views.plantillaview.dispatch "Link to this definition")
+
+Despacha la solicitud, excluyendo la verificación CSRF.
+
+get(*request*, *id\_plantilla=None*)[#](#api.views.plantillaview.get "Link to this definition")
+
+Maneja las solicitudes GET para recuperar información sobre plantillas o descargar una plantilla específica.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_plantilla** – ID de la plantilla a recuperar o descargar (opcional).
+
+Devuelve:
+
+JsonResponse con detalles de la plantilla o una respuesta de error.
+
+post(*request*, *id\_plantilla=None*)[#](#api.views.plantillaview.post "Link to this definition")
+
+Maneja las solicitudes POST para crear una nueva plantilla o actualizar una existente.
+
+Parámetros:
+
+- **request** – Objeto de solicitud Django.
+- **id\_plantilla** – ID de la plantilla a actualizar (opcional).
+
+Devuelve:
+
+JsonResponse con detalles de la plantilla creada o actualizada o una respuesta de error.
+
+api.views.generar\_certificado\_pdf(*certificado*, *plantilla\_path*, *detalle\_certificado1*, *detalle\_certificado2*)[#](#api.views.generar_certificado_pdf "Link to this definition")
+
+Genera un certificado en formato PDF combinando la información del certificado, la plantilla, y las firmas proporcionadas.
+
+Parámetros:
+
+- **certificado** – Objeto Certificado que contiene la información necesaria para generar el certificado.
+- **plantilla\_path** – Ruta del archivo PDF de la plantilla del certificado. 
+- **detalle\_certificado1** – Objeto Detalle\_Certificado que contiene la información de la primera firma.
+- **detalle\_certificado2** – Objeto Detalle\_Certificado que contiene la información de la segunda firma.
+
+[anterior](index.html "página anterior")
+
+[Welcome to Certech’s documentation!](index.html "página anterior")[](CertechBakend.html "siguiente página")
+
+[siguiente](CertechBakend.html "siguiente página")
+
+[CertechBakend package](CertechBakend.html "siguiente página")
+
+En esta página 
+
+- [Submodules](#submodules)
+- [api.models module](#module-api.models) 
+  - [Administrador](#api.models.administrador) 
+    - [Administrador.DoesNotExist](#api.models.administrador.doesnotexist)
+    - [Administrador.MultipleObjectsReturned](#api.models.administrador.multipleobjectsreturned)
+    - [Administrador.cedula](#api.models.administrador.cedula)
+    - [Administrador.celular](#api.models.administrador.celular)
+    - [Administrador.clave](#api.models.administrador.clave)
+    - [Administrador.correo](#api.models.administrador.correo)
+    - [Administrador.id_administrador](#api.models.administrador.id_administrador)
+    - [Administrador.objects](#api.models.administrador.objects)
+    - [Administrador.usuario](#api.models.administrador.usuario)
+  - [Certificado](#api.models.certificado) 
+    - [Certificado.DoesNotExist](#api.models.certificado.doesnotexist)
+    - [Certificado.MultipleObjectsReturned](#api.models.certificado.multipleobjectsreturned)
+    - [Certificado.codigo_unico](#api.models.certificado.codigo_unico)
+    - [Certificado.fecha](#api.models.certificado.fecha)
+    - [Certificado.get_next_by_fecha()](#api.models.certificado.get_next_by_fecha)
+    - [Certificado.get_previous_by_fecha()](#api.models.certificado.get_previous_by_fecha)
+    - [Certificado.id_administrador](#api.models.certificado.id_administrador)
+    - [Certificado.id_certificado](#api.models.certificado.id_certificado)
+    - [Certificado.id_evento](#api.models.certificado.id_evento)
+    - [Certificado.id_participante](#api.models.certificado.id_participante)
+    - [Certificado.id_plantilla](#api.models.certificado.id_plantilla)
+    - [Certificado.objects](#api.models.certificado.objects)
+    - [Certificado.url](#api.models.certificado.url)
+  - [Detalle_Certificado](#api.models.detalle_certificado) 
+    - [Detalle_Certificado.DoesNotExist](#api.models.detalle_certificado.doesnotexist)
+    - [Detalle_Certificado.MultipleObjectsReturned](#api.models.detalle_certificado.multipleobjectsreturned)
+    - [Detalle_Certificado.id_certificado](#api.models.detalle_certificado.id_certificado)
+    - [Detalle_Certificado.id_detalle](#api.models.detalle_certificado.id_detalle)
+    - [Detalle_Certificado.id_firma](#api.models.detalle_certificado.id_firma)
+    - [Detalle_Certificado.objects](#api.models.detalle_certificado.objects)
+  - [Evento](#api.models.evento) 
+    - [Evento.DoesNotExist](#api.models.evento.doesnotexist)
+    - [Evento.MultipleObjectsReturned](#api.models.evento.multipleobjectsreturned)
+    - [Evento.descripcion_evento](#api.models.evento.descripcion_evento)
+    - [Evento.fecha_creacion](#api.models.evento.fecha_creacion)
+    - [Evento.get_next_by_fecha_creacion()](#api.models.evento.get_next_by_fecha_creacion)
+    - [Evento.get_previous_by_fecha_creacion()](#api.models.evento.get_previous_by_fecha_creacion)
+    - [Evento.id_evento](#api.models.evento.id_evento)
+    - [Evento.logo](#api.models.evento.logo)
+    - [Evento.nombre_evento](#api.models.evento.nombre_evento)
+    - [Evento.objects](#api.models.evento.objects)
+    - [Evento.portada](#api.models.evento.portada)
+    - [Evento.tipo_evento](#api.models.evento.tipo_evento)
+  - [Firma](#api.models.firma) 
+    - [Firma.DoesNotExist](#api.models.firma.doesnotexist)
+    - [Firma.MultipleObjectsReturned](#api.models.firma.multipleobjectsreturned)
+    - [Firma.cargo_propietario](#api.models.firma.cargo_propietario)
+    - [Firma.estado_firma](#api.models.firma.estado_firma)
+    - [Firma.firma](#api.models.firma.firma)
+    - [Firma.id_firma](#api.models.firma.id_firma)
+    - [Firma.objects](#api.models.firma.objects)
+    - [Firma.propietario_firma](#api.models.firma.propietario_firma)
+  - [Participante](#api.models.participante) 
+    - [Participante.DoesNotExist](#api.models.participante.doesnotexist)
+    - [Participante.MultipleObjectsReturned](#api.models.participante.multipleobjectsreturned)
+    - [Participante.cedula](#api.models.participante.cedula)
+    - [Participante.celular](#api.models.participante.celular)
+    - [Participante.correo](#api.models.participante.correo)
+    - [Participante.id_participante](#api.models.participante.id_participante)
+    - [Participante.nombre_apellido](#api.models.participante.nombre_apellido)
+    - [Participante.objects](#api.models.participante.objects)
+  - [Plantilla](#api.models.plantilla) 
+    - [Plantilla.DoesNotExist](#api.models.plantilla.doesnotexist)
+    - [Plantilla.MultipleObjectsReturned](#api.models.plantilla.multipleobjectsreturned)
+    - [Plantilla.id_plantilla](#api.models.plantilla.id_plantilla)
+    - [Plantilla.objects](#api.models.plantilla.objects)
+    - [Plantilla.plantilla](#api.models.plantilla.plantilla)
+- [api.views module](#module-api.views) 
+  - [AdministradorView](#api.views.administradorview) 
+    - [AdministradorView.dispatch()](#api.views.administradorview.dispatch)
+    - [AdministradorView.get()](#api.views.administradorview.get)
+  - [CertificadoParticipanteView](#api.views.certificadoparticipanteview) 
+    - [CertificadoParticipanteView.dispatch()](#api.views.certificadoparticipanteview.dispatch)
+    - [CertificadoParticipanteView.get()](#api.views.certificadoparticipanteview.get)
+  - [CertificadoValidoView](#api.views.certificadovalidoview) 
+    - [CertificadoValidoView.dispatch()](#api.views.certificadovalidoview.dispatch)
+    - [CertificadoValidoView.get()](#api.views.certificadovalidoview.get)
+  - [CertificadoView](#api.views.certificadoview) 
+    - [CertificadoView.dispatch()](#api.views.certificadoview.dispatch)
+    - [CertificadoView.post()](#api.views.certificadoview.post)
+  - [EventoUpdate](#api.views.eventoupdate) 
+    - [EventoUpdate.dispatch()](#api.views.eventoupdate.dispatch)
+    - [EventoUpdate.post()](#api.views.eventoupdate.post)
+  - [EventoView](#api.views.eventoview) 
+    - [EventoView.delete()](#api.views.eventoview.delete)
+    - [EventoView.dispatch()](#api.views.eventoview.dispatch)
+    - [EventoView.get()](#api.views.eventoview.get)
+    - [EventoView.post()](#api.views.eventoview.post)
+  - [FirmaUpdateView](#api.views.firmaupdateview) 
+    - [FirmaUpdateView.dispatch()](#api.views.firmaupdateview.dispatch)
+    - [FirmaUpdateView.post()](#api.views.firmaupdateview.post)
+  - [FirmaView](#api.views.firmaview) 
+    - [FirmaView.delete()](#api.views.firmaview.delete)
+    - [FirmaView.dispatch()](#api.views.firmaview.dispatch)
+    - [FirmaView.get()](#api.views.firmaview.get)
+    - [FirmaView.post()](#api.views.firmaview.post)
+  - [ParticipanteFileView](#api.views.participantefileview) 
+    - [ParticipanteFileView.dispatch()](#api.views.participantefileview.dispatch)
+    - [ParticipanteFileView.post()](#api.views.participantefileview.post)
+  - [ParticipanteView](#api.views.participanteview) 
+    - [ParticipanteView.delete()](#api.views.participanteview.delete)
+    - [ParticipanteView.dispatch()](#api.views.participanteview.dispatch)
+    - [ParticipanteView.get()](#api.views.participanteview.get)
+    - [ParticipanteView.post()](#api.views.participanteview.post)
+    - [ParticipanteView.put()](#api.views.participanteview.put)
+  - [ParticipantesEventoView](#api.views.participanteseventoview) 
+    - [ParticipantesEventoView.dispatch()](#api.views.participanteseventoview.dispatch)
+    - [ParticipantesEventoView.get()](#api.views.participanteseventoview.get)
+  - [PlantillaView](#api.views.plantillaview) 
+    - [PlantillaView.delete()](#api.views.plantillaview.delete)
+    - [PlantillaView.dispatch()](#api.views.plantillaview.dispatch)
+    - [PlantillaView.get()](#api.views.plantillaview.get)
+    - [PlantillaView.post()](#api.views.plantillaview.post)
+  - [generar_certificado_pdf()](#api.views.generar_certificado_pdf)
+
+[Mostrar el código ](_sources/api.rst.txt)
+
+© Copyright 2024, José Ojeda, Karen Moyolema, Eduardo Pila, Anthony Solis, Jonathan Villafuerte. 
+
+Creado usando [Sphinx](https://www.sphinx-doc.org/) 7.2.6. 
+
+Construido con el [Tema PyData Sphinx](https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html) 0.15.1. 
