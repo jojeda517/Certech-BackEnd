@@ -1,24 +1,3 @@
-<a name="pst-skip-link"></a>[Saltar al contenido principal](#main-content) 
-
-Back to top <a name="__primary"></a> FORMCHECKBOX <a name="__secondary"></a> FORMCHECKBOX 
-
-<a name="q"></a>*      Ctrl+K
-
-[documentación de Certech - 1.0.0](index.html)
-
-- [api package ]()
-- [CertechBakend package ](CertechBakend.html)
-- [CertechBakend ](modules.html)
-- [api package ]()
-- [CertechBakend package ](CertechBakend.html)
-- [CertechBakend ](modules.html)
-
-Navegación del sección
-
-- [CertechBakend package](CertechBakend.html)
-- [api package]()
-- [manage module](manage.html)
-- [](index.html)
 - api package
 # <a name="api-package"></a>**api package[#**](#api-package "Link to this heading")**
 ## <a name="submodules"></a>**Submodules[#**](#submodules "Link to this heading")**
